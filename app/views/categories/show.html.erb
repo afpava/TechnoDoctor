@@ -1,0 +1,48 @@
+<%#= link_to 'New category', categories_path(country_id: @country.id), method: :post, :class=>'btn btn-default' %>
+<%= render partial: '/pages/header', :locals => { text: "New Brand" } %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="col-md-4 mb-2 white-text text-center text-md-left">
+        <div class="card">
+          <div class="card-heading">
+            <strong>Category:</strong>
+            <%= @category.description %>
+          </div>
+
+        </div><!-- /card card-default -->
+        <td><%= link_to categories_path , :class=>'btn btn-primary btn-sm' do %>
+          <i class="fa fa-undo"></i>
+          <% end %></td>
+        </div>
+      </div>
+      <div class="section-space">
+        <div class="row column-block">
+          <div class="col-md-4 col-sm-4">
+            <h3>Create Brand</h3>
+            <%= render partial: 'shared/form', :locals => { main_parent: nil ,parent: @category, pl_text: "Brand", children: @category.brands.build, extra_text: "" } %>
+            <h3><%= 'Brands:' if @category.brands.any? %></h3>
+            <%= render partial: 'shared/list', :locals => { elements: @category.brands.reload, main_parent: nil , parent: @category, obj: "brand"} %>
+          </div>
+
+          <div class="col-md-4 col-sm-4">
+            <h3>Create Operation</h3>
+            <%= render partial: 'shared/form', :locals => { main_parent: nil ,parent: @category, pl_text: "Operation", children: @category.operations.build, extra_text: "price" } %>
+            <h3><%= 'Operations:' if @category.operations.any? %></h3>
+            <%= render partial: 'shared/list', :locals => { elements: @category.operations.reload, main_parent: nil , parent: @category, obj: "operation"} %>
+
+          </div>
+
+          <div class="col-md-4 col-sm-4">
+            <h3>Create Diserpare</h3>
+            <%= render partial: 'shared/form', :locals => { main_parent: nil ,parent: @category, pl_text: "Disrepare", children: @category.disrepares.build, extra_text: "" } %>
+            <h3><%= 'Disrepares:' if @category.disrepares.any? %></h3>
+            <%= render partial: 'shared/list', :locals => { elements: @category.disrepares.reload, main_parent: nil , parent: @category, obj: "disrepare"} %>
+
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>

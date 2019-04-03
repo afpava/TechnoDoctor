@@ -1,0 +1,30 @@
+disrepare<%= form_with(model: [@category, @disrepares], local: true) do |form| %>
+  <% if @disrepares.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@disrepares.errors.count, "error") %> prohibited this category from being saved:</h2>
+
+      <ul>
+      <% @disrepares.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <!-- Text input-->
+  <div class="row column">
+    <div class="col-md-12 col-sm-12">
+      <div class="col-md-6 col-sm-6">
+
+        <%= form.text_field :description , class: 'form-control input-md', autofocus: true, placeholder: 'Category name' %>
+      </div>
+    <!-- Button -->
+     <div class="col-md-6 col-sm-6">
+                 <div class="actions">
+      <%= form.submit  class: 'btn btn-default pull-right' %>
+    </div>
+  </div>
+</div>
+</div>
+
+<% end %>

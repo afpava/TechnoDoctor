@@ -1,0 +1,22 @@
+<div class="card">
+  <div class="card-heading">
+    <strong><%= pl_text %>:</strong>
+    <%= children.name %> </br>
+    <%=  content_tag(:strong, "Destination: ") + children.destination + tag(:br) if defined? children.destination %>
+    <%= content_tag(:strong,"Passport: ") + children.passport + tag(:br) if defined? children.passport %>
+    <%= content_tag(:strong,"Phone number: ") + children.phone_number if defined? children.phone_number %>
+  </div>
+  <div class="card-body">
+    <div class="col-md-12">
+
+        <p><%= image_tag(children.image.url, alt: 'Image', :class =>'card-img-top') if children.image? %></p>
+
+    </div>
+  </div><!-- /card-body -->
+    <tr>
+      <%# if current_user %>
+      <td><%= link_to 'Edit', edit_polymorphic_path([parent, children]), :class=>'btn btn-light' %></td>
+      <td><%= link_to 'Delete', [parent, children], :class=>'btn btn-danger float-right', method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <%# end%>
+    </tr>
+</div><!-- /card card-default -->

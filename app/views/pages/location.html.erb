@@ -1,0 +1,103 @@
+<%= render partial: 'header', :locals => { text: "Location" } %>
+<div class="main-container"><!-- main container -->
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 col-sm-12">
+        <div class="row">
+          <div class="col-md-12 location-block"><!-- location block -->
+
+            <div class="well-bg">
+              <div class="well-inner">
+                <h2>Aldgate</h2>
+                <address>
+                46 South Street Glaziers
+                Bay Tas 7109
+                </address>
+                <h3 class="location-title">Opening Hours</h3>
+                <ul class="listnone">
+                  <li>Mon - Fri<span class="location-time">8am - 8pm </span></li>
+                  <li>Sat - Sun <span class="location-time">Holidays</span></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <!-- /.location block -->
+        </div>
+      </div>
+      <div class="col-md-8 col-sm-12">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="location-map" id="googleMap"></div>
+            <div class="location-info">
+              <h2>Location Information</h2>
+              <p>Sed eget tellus ac risus porta tristique. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Duis at nibh id ligula sollicitudin faucibus et ut mauris. Nunc pulvinar porta quam, nec condimentum dui semper et. Etiam finibus facilisis imperdiet.</p>
+              <p>Fusce eu nibh quis justo tempor faucibus. Mauris ullamcorper erat a metus pulvinar, in tincidunt massa volutpat. Phasellus vel iaculis nisl. Proin hendrerit enim eu mattis consectetur. Nunc hendrerit nulla sit amet interdum placerat. Interdum et malesuada fames ac ante ipsum primis in faucibus. </p>
+              <p><strong>make us call : 800 123 4567</strong></p>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="feedback-section">
+              <h2>Customer Feedback</h2>
+              <div class="row">
+                <div class="col-md-12 col-sm-6">
+                  <div class="well-bg feedback-block">
+                    <p><i>“Nam mollis bibendum orcia dictumestibulum pretium lacus acsem laoreet semper facilisis mauris efficituorem ipsum dolorsit.”</i></p>
+                    <div class="client-name">
+                      <h3>Paul Obrik</h3>
+                      <span class="feedback-date">21 july, 2016</span> </div>
+                  </div>
+                </div>
+                <div class="col-md-12 col-sm-6">
+                  <div class="well-bg feedback-block">
+                    <p><i>“Nam mollis bibendum orcia dictumestibulum pretium lacus acsem laoreet semper facilisis mauris efficituorem ipsum dolorsit.”</i></p>
+                    <div class="client-name">
+                      <h3>Paul Obrik</h3>
+                      <span class="feedback-date">21 july, 2016</span> </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="leave-feedback">
+              <h2>Leave a Feedback</h2>
+              <form>
+                <div class="row">
+                  <!-- Textarea -->
+                  <div class="form-group">
+                    <div class="col-md-12">
+                      <label class="control-label" for="textarea">Message</label>
+                      <textarea class="form-control" id="textarea" name="textarea" rows="5">message</textarea>
+                    </div>
+                  </div>
+                  <div class="col-md-8">
+                    <!-- Text input-->
+                    <div class="form-group">
+                      <label class="control-label" for="name">Name</label>
+                      <input id="name" name="name" type="text" placeholder="name" class="form-control input-md" required="">
+                    </div>
+                  </div>
+
+                  <!-- Text input-->
+                  <div class="col-md-8">
+                    <div class="form-group">
+                      <label class="control-label" for="email">E-mail</label>
+                      <input id="email" name="email" type="text" placeholder="email" class="form-control input-md" required="">
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <!-- Button -->
+                    <div class="form-group">
+                      <button id="singlebutton" name="singlebutton" class="btn btn-primary">Submit</button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /.main container -->

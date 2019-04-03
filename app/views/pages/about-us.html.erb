@@ -1,0 +1,103 @@
+<%= render partial: 'header', :locals => { text: "About us" } %>
+<div class="main-container"><!-- main container -->
+  <div class="space-bottom-80">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 section-title">
+          <h1>We are repair store</h1>
+          <p>Explore new ways to see what’s working and fix what’s not.</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 col-sm-6"> <img src="/assets/about-image.png" alt="iPhone Repair Store" class="img-responsive"> </div>
+        <div class="col-md-6 col-sm-6">
+          <p class="lead">We strive to help people by providing extraordinary service and expert repairs using only the highest quality parts available.</p>
+          <p>Of course we love fixing cracked iPhone screens and broken charge ports, but we get our satisfaction from helping out folks who lost their connection to the outside world.</p>
+          <h2>What We Do</h2>
+          <p>We service all the newest and popular mobile phones, tablets and laptops. natis sed id nisl magna auris et neque sollicitudin ullamcorper fusce molestie felis mi id.Vestibulum venenatis sed id nisl magna suspendisse a mauris. </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="section-space section-color">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-offset-1 col-md-10 section-title">
+          <h1>Everybody has standards ours are just better.</h1>
+          <p>Explore new ways to see what’s working and fix what’s not. Vivamus sed finibus nulla.
+            Suspendisse ac ex sed sem consequat pellentesque ain nulla.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-3 feature text-center feature-bg col-sm-6">
+        <div class="feature-inner">
+           <div class="feature-icon"><i class="fa fa-wrench"></i></div>
+        <div class="feature-content">
+          <h3>Free Diagnostics</h3>
+          <p>Nam elementum ullamcorper tristique. trum finibus usce egestas justo eget nunc volutpat ullamcorper.</p>
+        </div>
+        </div>
+      </div>
+      <div class="col-md-3 feature text-center feature-bg col-sm-6">
+          <div class="feature-inner">
+            <div class="feature-icon"><i class="fa fa-money"></i></div>
+        <div class="feature-content">
+          <h3>Low Price Guarantee</h3>
+          <p>Nam elementum ullamcorper tristique. trum finibus usce egestas justo eget nunc volutpat ullamcorper.</p>
+        </div>
+          </div>
+      </div>
+      <div class="col-md-3 feature text-center feature-bg col-sm-6">
+        <div class="feature-inner">
+          <div class="feature-icon"><i class="fa fa-gear"></i></div>
+        <div class="feature-content">
+          <h3>Quick Repair Process</h3>
+          <p>Nam elementum ullamcorper tristique. trum finibus usce egestas justo eget nunc volutpat ullamcorper.</p>
+        </div>
+        </div>
+      </div>
+      <div class="col-md-3 feature text-center feature-bg col-sm-6">
+        <div class="feature-inner">
+          <div class="feature-icon"><i class="fa fa-calendar-check-o"></i></div>
+        <div class="feature-content">
+          <h3>90-Day Warranty</h3>
+          <p>Nam elementum ullamcorper tristique. trum finibus usce egestas justo eget nunc volutpat ullamcorper.</p>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="section-space">
+    <div class="container">
+    <div class="row">
+      <div class="col-md-offset-2 col-md-8 section-title"><h1>TechnoDoctor Repair Professionals</h1>
+      <p>We are a team of dedicated professionals, ready to do what ever it takes to
+          make your device problem solutions.</p>
+      </div>
+    </div>
+      <div class="row">
+
+        <% @collaborators.each do |collaborator| %>
+        <div class="col-md-3 team-block col-sm-6"><!-- team block -->
+          <div class="well-bg">
+            <div class="well-inner"> <img src="/assets/team-1.jpg" alt="" class="img-responsive"> </div>
+            <div class="team-content"><!-- team content -->
+              <h3><%= collaborator.full_name %></h3>
+              <span class="designation"><%= collaborator.position.humanize if collaborator.position %> </span> </div>
+            <!-- /.team content -->
+          </div>
+        </div>
+        <!-- /.team block -->
+
+
+        <% end %>
+        <!-- /.team block -->
+
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /.main container -->

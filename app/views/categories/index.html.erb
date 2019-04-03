@@ -1,0 +1,11 @@
+<%= render partial: '/pages/header', :locals => { text: "Create category" } %>
+<div class="section-space"><!-- main container -->
+  <div class="row">
+    <div class="col-md-offset-2 col-md-5 col-sm-offset-2 col-sm-5">
+      <div class="table-responsive">
+        <%= render partial: 'shared/list', :locals => { elements: @categories, main_parent: nil, parent:@category , obj: "category"} %>
+      </div>
+      <%= link_to 'New category', new_category_path, :class=>'btn btn-default' %>
+    </div>
+  </div>
+</div>

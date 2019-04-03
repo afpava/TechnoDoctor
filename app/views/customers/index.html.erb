@@ -1,0 +1,19 @@
+<div class="container">
+<table rules="cols, rows" cellspacing="2" border="1" cellpadding="5" width="800" >
+  <tr>
+    <th>Number</th>
+    <th>Full Name</th>
+    <th>phone number</th>
+    <th>User email</th>
+  </tr>
+    <% @customers.each do | customer | %>
+  <tr align="center"><td><%=link_to customer.id, customer %> </td>
+      <td> <%= customer.full_name %> </td>
+      <td> <%= customer.phone_number %> </td>
+      <td> <%= customer.user.email if customer.user.present? && customer.user.email.present? %> </td>
+
+  </tr>
+    <% end %>
+</table>
+
+</div>

@@ -1,0 +1,17 @@
+<%= render partial: '/pages/header', :locals => { text: "Editing Category" } %>
+
+<div class="container">
+
+  <div class="card-body">
+    <div class="col-md-12">
+
+    </div>
+  </div>
+    <%= render 'form', category: @category %>
+
+      <tr class="container-fluid pull-right">
+
+              <td><%= link_to 'Back', root_url, :class=>'btn btn-outline-secondary', data: { confirm: 'Are you sure?' } %></td>
+              <td><%= link_to 'Show', @country, :class=>'btn btn-outline-secondary' %></td>
+      </tr>
+</div>
