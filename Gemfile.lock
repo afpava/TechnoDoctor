@@ -11,6 +11,14 @@ GIT
       tty-screen (~> 0.6.5)
       tty-tree (~> 0.2.0)
 
+GIT
+  remote: https://github.com/thoughtbot/administrate-field-image.git
+  revision: ff67471fe2998321792baaedcaefc8ed35d305e3
+  branch: master
+  specs:
+    administrate-field-image (1.1.0)
+      administrate (>= 0.2.0.rc1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -69,6 +77,9 @@ GEM
       momentjs-rails (~> 2.8)
       sass-rails (~> 5.0)
       selectize-rails (~> 0.6)
+    administrate-field-enum (0.0.7)
+      administrate
+      rails (>= 4.2, < 6.0)
     archive-zip (0.12.0)
       io-like (~> 0.3.0)
     arel (9.0.0)
@@ -375,6 +386,8 @@ PLATFORMS
 DEPENDENCIES
   access-granted (~> 1.1.0)
   administrate
+  administrate-field-enum
+  administrate-field-image!
   bcrypt (~> 3.1.7)
   better_errors (~> 2.5)
   binding_of_caller (~> 0.8.0)

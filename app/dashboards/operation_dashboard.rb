@@ -12,7 +12,7 @@ class OperationDashboard < Administrate::BaseDashboard
     category: Field::BelongsTo,
     id: Field::Number,
     description: Field::String,
-    price: Field::Number.with_options(decimals: 2),
+    price: Field::Number.with_options(decimals: 2, prefix: "$",),
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
   }.freeze

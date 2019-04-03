@@ -35,6 +35,10 @@ gem 'jbuilder', '~> 2.5'
 gem 'bcrypt', '~> 3.1.7'
 #Administrate - admin dashboard
 gem "administrate"
+#Administrate enums
+gem 'administrate-field-enum'
+#Administrate Image
+gem 'administrate-field-image', :git => 'https://github.com/thoughtbot/administrate-field-image.git', :branch => 'master'
 
 gem 'omniauth-google-oauth2'
 

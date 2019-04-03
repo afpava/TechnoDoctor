@@ -11,7 +11,7 @@ class PartDashboard < Administrate::BaseDashboard
     ticket: Field::BelongsTo,
     id: Field::Number,
     description: Field::String,
-    price: Field::Number.with_options(decimals: 2),
+    price: Field::Number.with_options(decimals: 2, prefix: "$",),
     quantity: Field::Number,
     ticket_id: Field::Number,
     created_at: Field::DateTime,
