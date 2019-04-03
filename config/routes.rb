@@ -1,4 +1,20 @@
 Rails.application.routes.draw do
+  namespace :admin do
+      resources :brands
+      resources :categories
+      resources :collaborators
+      resources :customers
+      resources :devices
+      resources :disrepares
+      resources :feedbacks
+      resources :models
+      resources :operations
+      resources :parts
+      resources :tickets
+      resources :users
+
+      root to: "brands#index"
+    end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   # resources :customers do
       get '/pages/:page' => 'pages#show'

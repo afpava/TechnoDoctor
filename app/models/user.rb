@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_one :customer
+  has_many :feedbacks
   attr_accessor :full_name, :age, :birthdays_this_month
 
   email_regex = /\A[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\z/i

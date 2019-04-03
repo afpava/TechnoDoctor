@@ -5,7 +5,6 @@ class Ticket < ApplicationRecord
   belongs_to :collaborator, optional: true
   has_and_belongs_to_many :disrepares, uniq: true
   has_and_belongs_to_many :operations, uniq: true
-  has_one :user
   has_many :parts
   enum stage: [:accepted, :in_progress, :done, :taken]
   accepts_nested_attributes_for :device, allow_destroy: true

@@ -9,6 +9,14 @@ Things you may want to cover:
 
 * System dependencies
 
+  Add Administrate to your Gemfile and re-bundle:
+
+  gem "administrate"
+  The included installer will create dashboards for each model in your app, complete with routes:
+
+  $ rails generate administrate:install
+  Restart your server, and visit http://localhost:3000/admin to see your new dashboard in action.
+
 * Configuration
 
 * Database creation
