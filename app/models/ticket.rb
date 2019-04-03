@@ -13,7 +13,7 @@ class Ticket < ApplicationRecord
 
   after_initialize do
       if self.new_record?
-        self.role ||= :accepted
+        self.stage ||= :accepted
       end
   end
 

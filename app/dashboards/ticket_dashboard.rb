@@ -13,12 +13,11 @@ class TicketDashboard < Administrate::BaseDashboard
     collaborator: Field::BelongsTo,
     disrepares: Field::HasMany,
     operations: Field::HasMany,
-    user: Field::HasOne,
     parts: Field::HasMany,
     id: Field::Number,
     orient_price: Field::Number.with_options(decimals: 2),
     prepayment: Field::Number,
-    stage: Field::String.with_options(searchable: false),
+    stage: Field::Enum,
     in_date: Field::DateTime,
     orient_date: Field::DateTime,
     total_price: Field::Number.with_options(decimals: 2),
@@ -32,10 +31,13 @@ class TicketDashboard < Administrate::BaseDashboard
   # By default, it's limited to four items to reduce clutter on index pages.
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = [
+    :id,
     :customer,
     :device,
     :collaborator,
     :disrepares,
+    :stage,
+    :total_price,
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
@@ -46,7 +48,6 @@ class TicketDashboard < Administrate::BaseDashboard
     :collaborator,
     :disrepares,
     :operations,
-    :user,
     :parts,
     :id,
     :orient_price,
@@ -68,7 +69,6 @@ class TicketDashboard < Administrate::BaseDashboard
     :collaborator,
     :disrepares,
     :operations,
-    :user,
     :parts,
     :orient_price,
     :prepayment,

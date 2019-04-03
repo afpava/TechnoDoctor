@@ -11,7 +11,7 @@ class CreateUsers < ActiveRecord::Migration[5.2]
       t.string :uid
       t.string :provider
       t.string :phone_number, index: true
-      t.integer :role
+      t.integer :role, default: 0, null: false
       t.integer :customer_id
 
       t.timestamps

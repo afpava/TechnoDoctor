@@ -4,7 +4,7 @@ class CreateFeedbacks < ActiveRecord::Migration[5.2]
       t.integer :user_id
       t.string :title
       t.text :text
-      t.integer :status
+      t.integer :status, default: 0, null: false
       t.references :user, foreign_key:true
 
       t.timestamps

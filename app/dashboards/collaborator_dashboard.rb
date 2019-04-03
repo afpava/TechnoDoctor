@@ -13,8 +13,8 @@ class CollaboratorDashboard < Administrate::BaseDashboard
     first_name: Field::String,
     last_name: Field::String,
     nickname: Field::String,
-    role: Field::Number,
     ticket_id: Field::Number,
+    position: Field::Enum,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
   }.freeze
@@ -29,6 +29,7 @@ class CollaboratorDashboard < Administrate::BaseDashboard
     :id,
     :first_name,
     :last_name,
+    :position,
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
@@ -39,8 +40,8 @@ class CollaboratorDashboard < Administrate::BaseDashboard
     :first_name,
     :last_name,
     :nickname,
-    :role,
     :ticket_id,
+    :position,
     :created_at,
     :updated_at,
   ].freeze
@@ -53,7 +54,7 @@ class CollaboratorDashboard < Administrate::BaseDashboard
     :first_name,
     :last_name,
     :nickname,
-    :role,
+    :position,
     :ticket_id,
   ].freeze
 

@@ -6,7 +6,7 @@ class Collaborator < ApplicationRecord
 
   after_initialize do
       if self.new_record?
-        self.role ||= :account_reciveble
+        self.position ||= :account_reciveble
       end
   end
 

@@ -23,10 +23,11 @@ class OperationDashboard < Administrate::BaseDashboard
   # By default, it's limited to four items to reduce clutter on index pages.
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = [
-    :tickets,
-    :category,
     :id,
     :description,
+    :price,
+    :tickets,
+    :category,
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
@@ -54,7 +55,7 @@ class OperationDashboard < Administrate::BaseDashboard
   # Overwrite this method to customize how operations are displayed
   # across all pages of the admin dashboard.
   #
-  # def display_resource(operation)
-  #   "Operation ##{operation.id}"
-  # end
+  def display_resource(operation)
+    "Operation -#{operation.description}"
+  end
 end
