@@ -15,34 +15,48 @@ Rails.application.routes.draw do
 
       root to: "brands#index"
     end
+
+
+      get 'signup' => 'users#new'
+      get 'login' => 'sessions#new'
+      get 'login_google' , to: redirect('/auth/google_oauth2'), as: 'login_google'
+      get 'auth/:provider/callback', to: 'sessions#create'
+      get 'auth/failure', to: redirect('/')
+      get 'logout' => 'sessions#destroy'
+      get 'contact' => 'contacts#new'
+
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   # resources :customers do
       get '/pages/:page' => 'pages#show'
       get 'home', :to => redirect('/pages/home')
 
-      resources :tickets do
-        resources :parts
-      end
-      resources :users do
-        resources :feedbacks, except: [:new, :create]
-      end
-      resources :feedbacks, only: [:new, :create]
+  resources :sessions , except: [:edit, :update]
+  resources :feedbacks, only: [:new, :create]
+  resources :customers
+  resources :contacts, only: [:new, :create]
 
-      resources :categories do
-        resources :brands do
-          resources :models
-        end
-      end
+  resources :users do
+    resources :feedbacks, except: [:new, :create]
+  end
 
-      resources :categories do
-        resources :operations
-      end
+  resources :tickets do
+    resources :parts
+  end
 
-      resources :categories do
-        resources :disrepares
-      end
+  resources :categories do
+    resources :brands do
+      resources :models
+    end
+  end
 
-      resources :customers
-  # end
-    root 'pages#home'
+  resources :categories do
+    resources :operations
+  end
+
+  resources :categories do
+    resources :disrepares
+  end
+root 'pages#home'
+
 end

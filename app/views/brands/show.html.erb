@@ -1,29 +1,32 @@
 <%#= link_to 'New category', categories_path(country_id: @country.id), method: :post, :class=>'btn btn-default' %>
-<%= render partial: '/pages/header', :locals => { text: "New Brand" } %>
-<div class="section-space">
-<div class="container">
-  <div class="row">
-    <div class="col-md-4 mb-2 white-text text-center text-md-left">
-      <div class="card">
-        <div class="card-heading">
-          <strong>Brand:</strong>
-          <%= @brand.description %>
-        </div>
+  <%= render partial: '/pages/header', :locals => { text: "New Brand" } %>
+  <div class="section-space">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 mb-2 white-text text-center text-md-left">
+          <div class="card">
+            <div class="card-heading">
+              <strong>Brand:</strong>
+              <%= @brand.description %>
+            </div>
 
-      </div><!-- /card card-default -->
-      <td><%= link_to category_path(@brand) , :class=>'btn btn-primary btn-sm' do %>
-         <i class="fa fa-undo"></i>
-         <% end %></td>
-    </div>
+          </div>
+          <!-- /card card-default -->
+          <td><%= link_to category_path(@brand) , :class=>'btn btn-primary btn-sm' do %>
+            <i class="fa fa-undo"></i>
+          <% end %>
+        </td>
+      </div>
 
-    <div class="col-md-8 col-xl-5 mb-4">
+      <div class="col-md-8 col-xl-5 mb-4">
+    <% if can? :create, Model %>
+        <h3>Create Model</h3>
+        <%= render partial: 'shared/form', :locals => { main_parent:@brand.category ,parent: @brand, pl_text: "Models", children: @brand.models.build, extra_text: "" } %>
+    <% end %>
+        <h3><%= 'Models:' if @brand.models.any? %></h3>
+        <%= render partial: 'shared/list', :locals => { elements: @brand.models.reload, main_parent:@brand.category, parent: @brand, obj: "model"} %>
 
-      <h3>Create Model</h3>
-      <%= render partial: 'shared/form', :locals => { main_parent:@brand.category ,parent: @brand, pl_text: "Brand", children: @brand.models.build } %>
-      <h3><%= 'Brands:' if @category.brands.any? %></h3>
-      <%= render partial: 'shared/list', :locals => { elements: @brand.models.reload, main_parent:@brand.category, parent: @brand, obj: "brand"} %>
-
+      </div>
     </div>
   </div>
-</div>
 </div>

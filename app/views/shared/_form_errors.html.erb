@@ -1,0 +1,19 @@
+<%= form_for obj do |f| %>
+<% if obj.errors.any? %>
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-body">
+          <div class="error_messages">
+            <ul>
+              <% obj.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+<% end %>

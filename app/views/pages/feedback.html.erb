@@ -1,0 +1,159 @@
+<%= render partial: '/pages/header', :locals => { text: "Feedback" } %>
+<div class="main-container"><!-- main container -->
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 content col-sm-12"><!-- content -->
+        <div class="row">
+          <div class="col-md-12">
+            <h1>Give Us Your Feedback</h1>
+            <p>The most important for us is your feedback.</p>
+          </div>
+          <div class="col-md-12">
+            <form class="feedbackform" method="post" action="https://jituchauhan.com/fixit-repair/digital-repair/feedback.php">
+              <div class="row">
+                <!-- Text input-->
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label class="control-label" for="fname">First Name<span class="required">*</span></label>
+                    <input id="fname" name="fname" type="text" placeholder="" class="form-control input-md" required>
+                  </div>
+                </div>
+                <!-- Text input-->
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label class="control-label" for="lname">Last Name<span class="required">*</span></label>
+                    <input id="lname" name="lname" type="text" placeholder="" class="form-control input-md" required>
+                  </div>
+                </div>
+
+                <!-- Text input-->
+
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label class="control-label" for="email">Email<span class="required">*</span></label>
+                    <input id="email" name="email" type="email" placeholder="" class="form-control input-md" required>
+                  </div>
+                </div>
+                <!-- Text input-->
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label class="control-label" for="phone">Phone<span class="required">*</span></label>
+                    <input id="phone" name="phone" type="text" placeholder="" class="form-control input-md" required>
+                  </div>
+                </div>
+                <!-- Text input-->
+
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label class="control-label" for="date">Date of Visited<span class="required">*</span></label>
+                    <input id="date" size="10" class="form-control" name="date" placeholder="Select Date"  required>
+                  </div>
+                </div>
+
+                <!-- Select Basic -->
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label class="control-label" for="location">Visited Location<span class="required">*</span></label>
+                    <select id="location" name="location" class="form-control">
+
+                      <option value="Pc &amp; Mac Repair">Pc &amp; Mac Repair</option>
+                      <option value="Laptop Repair">Laptop Repair</option>
+                      <option value="Tablet Repair">Tablet Repair</option>
+                      <option value="Smart Phone Repair">Smart Phone Repair</option>
+                      <option value="Console Repair">Console Repair</option>
+                      <option value="Data Recovery">Data Recovery</option>
+                    </select>
+                  </div>
+                </div>
+                <!-- Multiple Radios (inline) -->
+
+                <div class="col-md-12">
+                  <div class="form-group row">
+                    <label class="control-label col-md-12" >How Would You Like to Recommed Us?<span class="required">*</span></label>
+                    <div class="col-md-3">
+                      <label class="radio-inline" for="radios-0">
+                        <input type="radio" name="radios" id="radios-0" value="likely" checked="checked">
+                        Likely </label>
+                    </div>
+                    <div class="col-md-3">
+                      <label class="radio-inline" for="radios-1">
+                        <input type="radio" name="radios" id="radios-1" value="very-likely">
+                        Very Likely </label>
+                    </div>
+                    <div class="col-md-3">
+                      <label class="radio-inline" for="radios-2">
+                        <input type="radio" name="radios" id="radios-2" value="fabulous">
+                        Fabulous </label>
+                    </div>
+                    <div class="col-md-3">
+                      <label class="radio-inline" for="radios-3">
+                        <input type="radio" name="radios" id="radios-3" value="unlikely">
+                        Unlikely </label>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Textarea -->
+
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label class="control-label" for="reason">Your Main Reason to Choose Us<span class="required">*</span></label>
+                    <textarea class="form-control" id="reason" rows="7" name="reason"></textarea>
+                  </div>
+                </div>
+
+                <!-- Button -->
+                <div class="col-md-12">
+                  <button type="submit" class="btn btn-default">Submit Feedback</button>
+                  <span class="required pull-right">*Required Field</span> </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <!-- /.content -->
+
+      <div class="col-md-4 sidebar col-sm-12"><!-- sidebar -->
+        <div class="row">
+          <div class="col-md-12 widget col-sm-4">
+            <div class="well-bg widget-address">
+              <div class="well-inner"> <i class="fa fa-home"></i>
+                <h3>Address</h3>
+                <address>
+                136 Kingston Road<br>
+                SW19 1LY,<br>
+                Wimbledon London.
+                </address>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-12 widget col-sm-4">
+            <div class="well-bg widget-schedule">
+              <div class="well-inner"> <i class="fa fa-clock-o"></i>
+                <h3>Schedule</h3>
+                <ul class="listnone">
+                  <li>Mon - Fri:<strong> 9am - 6pm</strong></li>
+                  <li>Sat: <strong> Holiday</strong></li>
+                  <li>Sun: Appointments only.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-12 widget col-sm-4">
+            <div class="well-bg widget-phone">
+              <div class="well-inner"> <i class="fa fa-phone"></i>
+                <h3>Phone</h3>
+                <ul class="listnone">
+                  <li>Office: 8100-123-456</li>
+                  <li>Mobile: 8100-456-789</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /.sidebar -->
+    </div>
+  </div>
+</div>
+<!-- /.main container -->

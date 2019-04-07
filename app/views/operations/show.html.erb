@@ -1,0 +1,32 @@
+<%#= link_to 'New category', categories_path(country_id: @country.id), method: :post, :class=>'btn btn-default' %>
+  <%= render partial: '/pages/header', :locals => { text: "New Operation" } %>
+  <div class="section-space">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 mb-2 white-text text-center text-md-left">
+          <div class="card">
+            <div class="card-heading">
+              <strong>Operation:</strong>
+              <%= @operation.description %>
+            </div>
+
+          </div>
+          <!-- /card card-default -->
+          <td><%= link_to category_path(@operation) , :class=>'btn btn-primary btn-sm' do %>
+            <i class="fa fa-undo"></i>
+          <% end %>
+        </td>
+      </div>
+
+      <div class="col-md-8 col-xl-5 mb-4">
+    <% if can? :create, Operation %>
+        <h3>Create Operation</h3>
+        <%= render partial: 'shared/list',
+          :locals => { elements: @category.operations.reload,
+            main_parent: nil , parent: @category, obj: "operation"} %>
+
+    <% end %>
+      </div>
+    </div>
+  </div>
+</div>

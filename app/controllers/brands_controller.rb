@@ -1,15 +1,15 @@
 class BrandsController < ApplicationController
 
-  before_action :set_brand, only: [:show, :destroy, :edit, :update]
   before_action :set_category, only: [:index, :new, :create]
+  before_action :set_brand, only: [:show, :destroy, :edit, :update]
 
   #before_action :authorize, only: [:edit, :update, :destroy]
   def index
-    @pagy, @brands = pagy(Brand.by_category(params[:id]), items: 5)
+     @pagy, @brands = pagy(Brand.by_category(params[:id]), items: 5)
   end
 
   def show
-    @pagy, @models = pagy(@brand.models, items: 5)
+  @pagy, @models = pagy(@brand.models)
   end
 
   def new
@@ -26,7 +26,7 @@ class BrandsController < ApplicationController
     if @brand.save
       redirect_to category_path(@category), notice: 'Brand was successfully created.'
     else
-      render :new
+      redirect_to category_path(@category), alert: 'Brand can not be blank or exists.'
     end
   end
 

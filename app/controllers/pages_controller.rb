@@ -1,4 +1,6 @@
 class PagesController < ApplicationController
+  skip_before_action :require_login
+
   def show
     if valid_page?
       @collaborators = Collaborator.all
@@ -8,7 +10,6 @@ class PagesController < ApplicationController
     else
       render file: "public/error-page.html", status: :not_found
     end
-
   end
 
   private

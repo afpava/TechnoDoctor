@@ -13,10 +13,16 @@ class UserDashboard < Administrate::BaseDashboard
     id: Field::Number,
     email: Field::String,
     nickname: Field::String,
-    avatar: Field::Image,
+    avatar: Field::Carrierwave.with_options(
+                  image: :standard,
+                  multiple: false,
+                  image_on_index: false,
+                  remove: false,
+                  remote_url: false
+                ),
     first_name: Field::String,
     last_name: Field::String,
-    password_digest: Field::String,
+    password: Field::Password,
     birth_day: Field::DateTime,
     uid: Field::String,
     provider: Field::String,
@@ -33,24 +39,24 @@ class UserDashboard < Administrate::BaseDashboard
   # By default, it's limited to four items to reduce clutter on index pages.
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = [
-    :customer,
-    :feedbacks,
     :id,
     :email,
+    :feedbacks,
+    :customer,
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = [
+    :id,
     :customer,
     :feedbacks,
-    :id,
     :email,
     :nickname,
     :avatar,
     :first_name,
     :last_name,
-    :password_digest,
+    # :password_digest,
     :birth_day,
     :uid,
     :provider,
@@ -65,20 +71,21 @@ class UserDashboard < Administrate::BaseDashboard
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = [
-    :customer,
+    # :customer,
     :feedbacks,
     :email,
     :nickname,
-    # :avatar,
+    :avatar,
     :first_name,
     :last_name,
+    :password,
     # :password_digest,
     :birth_day,
     :uid,
     :provider,
     :phone_number,
     :role,
-    :customer_id,
+    # :customer,
   ].freeze
 
   # Overwrite this method to customize how users are displayed

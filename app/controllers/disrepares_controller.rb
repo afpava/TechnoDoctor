@@ -1,61 +1,51 @@
 class DisreparesController < ApplicationController
-
+  before_action :set_category, only: [:index, :new, :create]
   before_action :set_disrepare, only: [:show, :edit, :update, :destroy]
-  #before_action :authorize, only: [:edit, :update, :destroy]
-  def index
-    @disrepares = Disrepare.all
-  end
 
-  def show
-  #  @city = @countries.cities
+  def index
+    @disrepares = @category.disrepares.all
   end
 
   def new
-      @disrepare = Disrepare.new
+    @disrepare = @category.disrepares.build
   end
 
-  def edit
-  end
-
-  # POST /stores
-  # POST /stores.json
   def create
-    @disrepare = Disrepare.new(disrepare_params)
+    @disrepare = @category.disrepares.create(disrepare_params)
 
     if @disrepare.save
-      redirect_to root_url, notice: 'Disrepare was successfully created.'
+      redirect_to category_path(@category), notice: 'Disrepare was successfully created.'
     else
-      binding.pry
-      render :new
+      redirect_to category_path(@category), alert: 'Disrepare can not be blank or exists.'
     end
   end
 
-
-  # PATCH/PUT /stores/1
-  # PATCH/PUT /stores/1.json
   def update
     if @disrepare.update(disrepare_params)
-      redirect_to root_url, notice: 'Disrepare was successfully updated.'
+      redirect_to category_path(@category), notice: 'Disrepare was successfully updated.'
     else
       render :edit
     end
   end
 
-
-  # DELETE /stores/1
-  # DELETE /stores/1.json
   def destroy
     @disrepare.destroy
-    redirect_to countries_url, notice: 'Disrepare was successfully destroyed.'
+    redirect_to category_path(@category), notice: 'Disrepare was successfully destroyed.'
   end
 
 
   private
   # Use callbacks to share common setup or constraints between actions.
+
+
   def set_disrepare
-    @disrepare = Disrepare.find(params[:id])
+    set_category
+    @disrepare = @category.disrepares.find(params[:id]) if params[:id]
   end
 
+  def set_category
+    @category = Category.find(params[:category_id])
+  end
   # Never trust parameters from the scary internet, only allow the white list through.
   def disrepare_params
     params.require(:disrepare).permit(:description)

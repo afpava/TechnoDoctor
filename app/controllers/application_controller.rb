@@ -1,9 +1,10 @@
 class ApplicationController < ActionController::Base
   include Pagy::Backend
-
-  # before_action :require_login, except: [:new, :create]
+  before_action :require_login, except: [:new, :create]
   # skip_before_action :require_login, only: [:new, :create]
+
   rescue_from "AccessGranted::AccessDenied" do |exception|
+    # binding.pry
     redirect_to root_path, alert: "You don't have permission to access this page."
   end
 
@@ -12,12 +13,8 @@ class ApplicationController < ActionController::Base
   def require_login
     unless current_user
       flash.now.alert = 'You must be logged in to view this site'
-      render ('sessions/first.html.erb')
+      redirect_to root_path
     end
-  end
-
-  def authorize_admin
-    redirect_to root_path, alert: 'You can view and edit only yours profile.' unless @user.id == current_user.id || @task&.user&.id == current_user.id
   end
 
   def current_user

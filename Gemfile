@@ -15,6 +15,7 @@ gem 'sass-rails', '~> 5.0'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'jquery-rails'
 gem 'mini_racer'
+# gem "bootstrap_flash_messages", "~> 1.0.1"
 
 #Pagination
 gem 'pagy'
@@ -38,7 +39,7 @@ gem "administrate"
 #Administrate enums
 gem 'administrate-field-enum'
 #Administrate Image
-gem 'administrate-field-image', :git => 'https://github.com/thoughtbot/administrate-field-image.git', :branch => 'master'
+gem 'administrate-field-carrierwave', '~> 0.4.0'
 
 gem 'omniauth-google-oauth2'
 
@@ -65,14 +66,15 @@ group :development, :test do
   gem 'sqlite3', '~> 1.3.6'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   # gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'factory_bot_rails'
   # Faker
   gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
-  gem 'factory_bot_rails'
   gem 'pry-byebug', '~> 3.4', platforms: [:mri, :mingw, :x64_mingw]
 end
 
 # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
 group :development do
+  gem "letter_opener"
   gem 'web-console', '>= 3.3.0'
   gem 'listen', '>= 3.0.5', '< 3.2'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring

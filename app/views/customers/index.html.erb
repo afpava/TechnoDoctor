@@ -1,19 +1,55 @@
-<div class="container">
-<table rules="cols, rows" cellspacing="2" border="1" cellpadding="5" width="800" >
-  <tr>
-    <th>Number</th>
-    <th>Full Name</th>
-    <th>phone number</th>
-    <th>User email</th>
-  </tr>
-    <% @customers.each do | customer | %>
-  <tr align="center"><td><%=link_to customer.id, customer %> </td>
-      <td> <%= customer.full_name %> </td>
-      <td> <%= customer.phone_number %> </td>
-      <td> <%= customer.user.email if customer.user.present? && customer.user.email.present? %> </td>
+<%= render partial: '/pages/header', :locals => { text: "Customers" } %>
 
-  </tr>
-    <% end %>
-</table>
+<div class="section-space">
+  <!-- main container -->
+  <div class="row">
+    <div class="container">
+      <div class="table-responsive">
+        <table class='table table-bordred table-striped'>
+          <tr align="center">
+            <th>Number</th>
+            <th>Full Name</th>
+            <th>phone number</th>
+            <th>User email</th>
+            <th>Edit</th>
+            <th>Delete</th>
+          </tr>
+          <% @customers.each do | customer | %>
+            <tr align="center">
+              <td>
+                <%=link_to customer.id, customer %>
+              </td>
+              <td>
+                <%= customer.full_name %>
+              </td>
+              <td>
+                <%= customer.phone_number %>
+              </td>
+              <td>
+                <%= customer.user.email if customer.user.present? && customer.user.email.present? %>
+              </td>
+              <% if can? :update, customer %>
+                <td>
+                  <%= link_to edit_polymorphic_path(customer), :class=>'btn btn-default' do %>
+                  <i class="fa fa-pencil"></i>
+                <% end %>
+              </td>
+            <% end %>
+            <td>
+              <% if can? :destroy, customer %>
+                <%= link_to (customer), :class=>'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?' } do %>
+                <i class="fa fa-trash"></i>
+              <% end %>
+              <% end %>
+            </td>
 
+          </tr>
+        <% end %>
+      </table>
+
+    </div>
+    <%== pagy_bootstrap_nav(@pagy) if current_page?(action: 'index') if @pagy.pages > 1 %>
+
+  </div>
+</div>
 </div>

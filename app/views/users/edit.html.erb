@@ -1,0 +1,18 @@
+<%= render partial: '/pages/header', :locals => { text: "Edit Profile" } %>
+<div class="main-content">
+  <!-- main container -->
+  <div class="container content">
+    <div class="row">
+      <div class="col-md-6 col-sm-12 col-md-offset-3">
+        <!-- pricing block -->
+
+        <div class="well-bg">
+          <div class="well-inner">
+            <%= render 'form', user: @user %>
+          </div>
+        </div>
+        <!-- /.pricing block -->
+      </div>
+    </div>
+  </div>
+</div>

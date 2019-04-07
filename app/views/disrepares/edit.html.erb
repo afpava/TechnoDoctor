@@ -1,0 +1,11 @@
+<%= render partial: '/pages/header', :locals => { text: "New Disrepare" } %>
+<div class="section-space"><!-- main container -->
+	<div class="row">
+		<div class="col-md-offset-2 col-md-5 col-sm-offset-2 col-sm-5">
+			<td><%= link_to category_path( @category ), :class=>'btn btn-primary btn-sm' do %>
+         <i class="fa fa-undo"></i>
+         <% end %></td>
+				<%= render 'form', brand: [@disrepare, @category] %>
+		</div>
+	</div>
+</div>

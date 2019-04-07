@@ -3,7 +3,7 @@ class ModelsController < ApplicationController
   before_action :set_model, only: [:index, :show, :destroy, :edit, :update]
   #before_action :authorize, only: [:edit, :update, :destroy]
   def index
-    @models = Model.all
+    @pagy, @models = pagy(Model.all)
   end
 
   def show
@@ -20,7 +20,7 @@ class ModelsController < ApplicationController
     @model = @brand.models.create(model_params)
 
     if @model.save
-      redirect_to brand_path(@brand), notice: 'Model was successfully created.'
+      redirect_back(fallback_location: categories_path(@brand), notice: 'Model was successfully created.')
     else
       render :new
     end
@@ -28,7 +28,7 @@ class ModelsController < ApplicationController
 
   def update
     if @model.update(model_params)
-      redirect_to brand_path(@brand), notice: 'Model was successfully updated.'
+      redirect_back(fallback_location: categories_path(@brand), notice: 'Model was successfully updated.')
     else
       render :edit
     end
@@ -36,7 +36,7 @@ class ModelsController < ApplicationController
 
   def destroy
     @model.destroy
-    redirect_to brand_path(@brand), notice: 'Model was successfully destroyed.'
+    redirect_back(fallback_location: categories_path(@brand), notice: 'Model was successfully destroyed.')
   end
 
 

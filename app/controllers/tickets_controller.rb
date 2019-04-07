@@ -4,6 +4,7 @@ class TicketsController < ApplicationController
   #before_action :authorize, only: [:edit, :update, :destroy]
   def index
     @tickets = Ticket.all.includes(:customer,{ device: [:model]}, :collaborator )
+    # authorize! :read, @tickets
   end
 
   def show
@@ -15,12 +16,15 @@ class TicketsController < ApplicationController
     @disrepares = @ticket.disrepares
     @parts = @ticket.parts
     @operations = @ticket.operations
-    #@category = Category.new(store: @store)
+
+    authorize! :read, @ticket
+
   end
 
   def new
     # @passenger = Passenger.find(params[:passenger_id])
-    @ticket = @passenger.tickets.build
+    @ticket = @customer.tickets.build
+    authorize! :create, @ticket
   end
 
   def edit
@@ -39,6 +43,7 @@ class TicketsController < ApplicationController
     @pagy, @parts = pagy(Part.all, items: 3)
     @customers = Customer.all
     @operations = Operation.all
+    # authorize! :edit, @ticket
     #@ticket = ticket.find(params[:id]).country
   end
 
@@ -47,7 +52,7 @@ class TicketsController < ApplicationController
     @ticket = @customer.tickets.create(ticket_params)
 
     @ticket = ticket.new(ticket_params)
-
+    # authorize! :create, @ticket
     if @ticket.save
       # redirect_to passenger_path(@passenger), notice: 'ticket was successfully created.'
     else
@@ -96,7 +101,7 @@ class TicketsController < ApplicationController
        #      @ticket.disrepares << disrepare
        #  end
        @ticket.sum_prices(@ticket)
-
+      authorize! :update, @ticket
       redirect_to ticket_path(@ticket), notice: 'ticket was successfully updated.'
     else
       render :edit
@@ -104,6 +109,7 @@ class TicketsController < ApplicationController
   end
 
   def destroy
+    authorize! :destroy, @ticket
     @ticket.destroy
     redirect_to tickets_path, notice: 'ticket was successfully destroyed.'
   end

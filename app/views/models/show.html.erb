@@ -1,0 +1,30 @@
+<%#= link_to 'New category', categories_path(country_id: @country.id), method: :post, :class=>'btn btn-default' %>
+  <%= render partial: '/pages/header', :locals => { text: "Show Model" } %>
+  <div class="section-space">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 mb-2 white-text text-center text-md-left">
+          <div class="card">
+            <div class="card-heading">
+              <strong>Model:</strong>
+              <%= @model.description %>
+            </div>
+
+          </div>
+          <!-- /card card-default -->
+          <td><%= link_to category_brand_path(@brand) , :class=>'btn btn-primary btn-sm' do %>
+            <i class="fa fa-undo"></i>
+          <% end %>
+        </td>
+      </div>
+
+      <div class="col-md-8 col-xl-5 mb-4">
+    <% if can? :create, Model %>
+        <h3>Create Model</h3>
+        <%= render partial: 'shared/form', :locals => { main_parent:@brand.category ,parent: @brand, pl_text: "Models", children: @model, extra_text: "" } %>
+    <% end %>
+
+      </div>
+    </div>
+  </div>
+</div>

@@ -113,13 +113,14 @@ end #Omniauth google
       expect(user.full_name).to eq (user.first_name + " " + user.last_name)
     end
 
-    it "shoud return nul if first_name is blank" do
-      expect(blank_first.full_name).to eq nil
+    it "shoud return last_name if first_name is blank" do
+      expect(blank_first.full_name).to eq (" " + blank_first.last_name)
     end
 
-    it "shoud return nul if last_name is blank" do
-      expect(blank_last.full_name).to eq nil
+    it "shoud return first_name if last_name is blank" do
+      expect(blank_last.full_name).to eq (blank_last.first_name + " ")
     end
+
 
   end #fill_name
 

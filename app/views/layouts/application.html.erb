@@ -1,141 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-<meta name="description" content="TechnoDoctor is repair Shop websites template.">
-<meta name="keywords" content="HTML,CSS, Hardware Repair, Computer Repair, Website Template, Console Repair, Tablet Repair, iMac Repair">
-<title>Digital Repair Shop TechnoDoctor</title>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="TechnoDoctor is repair Shop websites template.">
+    <meta name="keywords" content="HTML,CSS, Hardware Repair, Computer Repair, Website Template, Console Repair, Tablet Repair, iMac Repair">
+    <title>Digital Repair Shop TechnoDoctor</title>
 
-<%= stylesheet_link_tag    'application', media: 'all' %>
-<%= javascript_include_tag 'application' %>
-<%= csrf_meta_tags %>
+    <%= stylesheet_link_tag 'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+    <%= csrf_meta_tags %>
 
-<!-- Template Google Fonts -->
-<link href='https://fonts.googleapis.com/css?family=Poppins:400,500,600,300,700' rel='stylesheet' type='text/css'>
+    <!-- Template Google Fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Poppins:400,500,600,300,700' rel='stylesheet' type='text/css'>
 
-<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-<!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-</head>
-<body>
-
-<div class="header-transparent navbar-fixed-top">
-  <div class="navigation-transparent">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-2 col-sm-3 col-xs-4"><a href="home"><img src="/assets/logo.png" alt=""></a></div>
-        <div class="col-md-8 col-sm-12">
-          <div id="navigation">
-             <ul>
-              <li class="active"><a href="/pages/home">Home</a></li>
-              <li><a href="/pages/about-us" title="About Us" class="link">About Us</a></li>
-
-              <li><a href="/pages/home" title="Repair Service" class="link">Repair Service</a>
-                <ul>
-                      <li><a href="/pages/pc-mac" title="PC &amp; IMAC Repair" class="link">PC &amp; IMAC Repair</a></li>
-                      <li><a href="/pages/laptop" title="Laptop Repair" class="link">Laptop Repair</a></li>
-                      <li><a href="/pages/phone" title="Smart Phone Repair" class="link">Smart Phone Repair</a></li>
-                      <li><a href="/pages/tablet" title="Tablet Repair" class="link">Tablet Repair</a></li>
-                      <li><a href="/pages/console" title="Console Repair" class="link">Console Repair</a></li>
-                      <li><a href="/pages/data-recovery" title="Data Recovery" class="link">Data Recovery</a></li>
-                </ul>
-              </li>
-
-              <li><a href="/pages/index-3.html#" title="Feature">Feature</a>
-                <ul>
-                  <li><a href="/pages/pricing.html" title="Pricing" class="link">Pricing</a>
-
-                  </li>
-
-                  <li><a href="/pages/feedback.html" title="Feedback" class="link">Feedback</a></li>
-                  <li><a href="/pages/repair-team.html" title="Team" class="link">Team</a></li>
-                  </li>
-
-                </ul>
-              <li><a href="/pages/contactus" title="Contact Us" class="link">Contact</a>
-          <ul>
-            <li><a href="/pages/contactus" title="Contact Us" class="link">Contact Us</a></li>
-            <li><a href="/pages/location-single" title="Location" class="link">Location <span class="badge">NEW</a></li>
-          </ul>
-        </li>
-
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </div>
-</div>
-
-
-        <%= yield %>
-
-<div class="footer">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-4 footer-widget  col-sm-6"> <img src="/assets/footer-logo.png" alt="">
-        <p>We strive to help people by providing extraordinary service and expert repairs using only the highest quality parts available.</p>
-        <p>We service all the newest and <strong class="text-highlight">popular mobile phones, tablets and laptops.</strong> natis sed id nisl magna auris et neque sollicitudin ullamcorper fusce molestie felis mi id.Vestibulum venenatis sed id nisl magna suspendisse a mauris. </p>
-      </div>
-      <div class="col-md-3 footer-widget col-sm-6">
-        <h3 class="footer-widget-title">contact us</h3>
-        <p>195 bulv. Shevchenko, Cherkassy Ukraine.
-        Entrance to "Kyivstar" near "Rubin"</p>
-          <p>Monday - Friday: 9am - 7pm
-            Saturday: 10am - 3pm <br>
-            <p>Office: 0208 543 7088 <br>
-              Mobile: 0 778 35 166 93</p>
-            </div>
-
-            <div class="col-md-3 footer-widget col-sm-5">
-              <h3 class="footer-widget-title">Get A Repair Started</h3>
-              <ul class="listnone circle">
-                <li><a href="/pages/pc-mac">PC and IMAC Repair</a></li>
-                <li><a href="/pages/laptop">Laptop Repair</a></li>
-                <li><a href="/pages/phone">Smart Phone Repair</a></li>
-                <li><a href="/pages/tablet">Tablet Repair</a></li>
-                <li><a href="/pages/console">Console Repair</a></li>
-                <li><a href="/pages/data-recovery">Data Recovery</a></li>
-              </ul>
-            </div>
-          </div>
-
-        </div>
-      </div>
-      <div class="tiny-footer">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-6 col-sm-6">
-              <p class="copyright-text">Copyright © 2019 TechnoDoctor</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- back to top icon -->
-      <a href="home#0" class="cd-top" title="Go to top">Top</a>
-
-      <script type="text/javascript">
-      $("#navigation").menumaker({
-        title: "Menu",
-        format: "multitoggle"
-      });
-      </script>
-
-      <script type="text/javascript">
-      //jQuery to collapse the navbar on scroll
-      $(window).scroll(function() {
-        if ($(".header-transparent").offset().top > 50) {
-          $(".navbar-fixed-top").addClass("top-nav-collapse");
-        } else {
-          $(".navbar-fixed-top").removeClass("top-nav-collapse");
-        }
-      });
-      </script>
-    </body>
-    </html>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]> <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script> <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script> <![endif]-->
+  </head>
+  <body>
+    <%= render 'shared/navigation' %>
+    <%= render 'shared/sidebar' %>
+    <%= yield %>
+    <%= render 'shared/footer' %>
+  </body>
+</html>

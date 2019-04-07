@@ -102,6 +102,8 @@ i=1
 	Collaborator.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, nickname:Faker::Name.name, user_id: i+=1)
 end
 
+	Ticket.create!( customer_id: 1, device_id: rand(1..10) )
+
 parts_list = [
 	[ "iPhone 5, 5s flat charge ", 10, 1 ],
 	[ "iPhone 8 LCD + Touchscreen white", 250, 2 ],
@@ -113,5 +115,5 @@ parts_list = [
 ]
 
 parts_list.each do |desc, price, quan |
-  Part.create!( description: desc, price: price, quantity: quan )
+  Part.create!( description: desc, price: price, quantity: quan, ticket_id: 1 )
 end

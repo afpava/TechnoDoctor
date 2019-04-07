@@ -10,7 +10,10 @@ module Admin
 
     def authenticate_admin
       # TODO Add authentication logic here.
+      # binding.pry
+      # current_policy&.admin?
     end
+
 
     # Override this value to specify the number of elements to display at a time
     # on index pages. Defaults to 20.

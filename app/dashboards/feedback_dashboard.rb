@@ -12,7 +12,7 @@ class FeedbackDashboard < Administrate::BaseDashboard
     id: Field::Number,
     title: Field::String,
     text: Field::Text,
-    status: Field::String.with_options(searchable: false),
+    status: Field::Enum,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
   }.freeze

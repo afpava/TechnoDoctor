@@ -1,0 +1,37 @@
+<%#
+# Flash Partial
+
+This partial renders flash messages on every page.
+
+## Relevant Helpers:
+
+- `flash`:
+  Returns a hash,
+  where the keys are the type of flash (alert, error, notice, etc)
+  and the values are the message to be displayed.
+%>
+
+
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Notificatons</h4>
+        </div>
+        <div class="modal-body">
+
+          <% if flash.any? %>
+            <div class="flashes">
+              <% @contact.errors.full_messages.each do |key, value| -%>
+                <div class="flash flash-<%= key %>"><%= value.html_safe %></div>
+              <% end -%>
+            </div>
+          <% end %>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>

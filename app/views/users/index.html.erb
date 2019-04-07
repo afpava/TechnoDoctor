@@ -1,0 +1,44 @@
+<%= render partial: '/pages/header', :locals => { text: "User Info" } %>
+
+<div class="main-container">
+  <div class="row">
+    <div class="col-md-9 col-sm-9">
+        <%= render partial: 'shared/ticket', :locals => { tickets: current_user&.customer&.tickets } if
+               current_user&.customer&.tickets.present? %>
+    </div>
+
+    <div class="col-md-3 col-sm-3">
+      <div class="well-bg">
+        <div class="testimonial-v3-author">
+          <div class="testimonial-v3-img">
+            <%= image_tag(current_user.avatar.url, alt: 'Avatar',
+               class: 'img-circle img-responsive',
+                 style: 'height: 75px;') if current_user.avatar? %>
+          </div>
+          <span class="testimonial-v2-meta">
+            <h4> User card</h4>
+          </span>
+          <h3 class="testimonial-v3-name">
+            <%= current_user.nickname %>
+          </h3>
+          <span class="testimonial-v3-meta"><%= current_user.role.humanize %></span>
+        </div>
+
+        <div class="well-inner">
+          <div class="testimonial-v3-caption"></br>
+          <%= content_tag(:strong, "First Name: ") + current_user.first_name + tag(:br) if current_user.first_name? %>
+          <%= content_tag(:strong, "Nickname: ") + current_user.nickname + tag(:br) if current_user.nickname? %>
+
+          <%= content_tag(:strong, "Last Name: ") + current_user.last_name + tag(:br) if current_user.last_name? %>
+          <%= content_tag(:strong, "email: ") + current_user.email + tag(:br) if current_user.email? %>
+
+          <tr>
+            <td><%= link_to 'Edit', edit_user_path(@user), :class=>'btn btn-default' %></td>
+          </tr>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</div>

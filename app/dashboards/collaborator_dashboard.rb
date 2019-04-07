@@ -13,6 +13,15 @@ class CollaboratorDashboard < Administrate::BaseDashboard
     first_name: Field::String,
     last_name: Field::String,
     nickname: Field::String,
+
+    avatar: Field::Carrierwave.with_options(
+              image: :standard,
+              multiple: false,
+              image_on_index: false,
+              remove: false,
+              remote_url: false
+            ),
+
     ticket_id: Field::Number,
     position: Field::Enum,
     created_at: Field::DateTime,
@@ -29,6 +38,7 @@ class CollaboratorDashboard < Administrate::BaseDashboard
     :id,
     :first_name,
     :last_name,
+    :avatar,
     :position,
   ].freeze
 
@@ -41,6 +51,7 @@ class CollaboratorDashboard < Administrate::BaseDashboard
     :last_name,
     :nickname,
     :ticket_id,
+    :avatar,
     :position,
     :created_at,
     :updated_at,
@@ -50,10 +61,11 @@ class CollaboratorDashboard < Administrate::BaseDashboard
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = [
-    :tickets,
+    :avatar,
+    :nickname,
     :first_name,
     :last_name,
-    :nickname,
+    :tickets,
     :position,
     :ticket_id,
   ].freeze

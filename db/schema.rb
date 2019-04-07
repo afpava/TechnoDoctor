@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 2019_03_31_114446) do
     t.string "nickname"
     t.string "avatar"
     t.integer "user_id"
-    t.integer "position"
+    t.integer "position", default: 0, null: false
     t.integer "ticket_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -44,13 +44,11 @@ ActiveRecord::Schema.define(version: 2019_03_31_114446) do
     t.string "last_name"
     t.string "phone_number"
     t.integer "user_id"
-    t.integer "ticket_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["first_name"], name: "index_customers_on_first_name"
     t.index ["last_name"], name: "index_customers_on_last_name"
     t.index ["phone_number"], name: "index_customers_on_phone_number"
-    t.index ["ticket_id"], name: "index_customers_on_ticket_id"
   end
 
   create_table "devices", force: :cascade do |t|
@@ -88,7 +86,7 @@ ActiveRecord::Schema.define(version: 2019_03_31_114446) do
     t.integer "user_id"
     t.string "title"
     t.text "text"
-    t.integer "status"
+    t.integer "status", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_feedbacks_on_user_id"
@@ -130,7 +128,7 @@ ActiveRecord::Schema.define(version: 2019_03_31_114446) do
   create_table "tickets", force: :cascade do |t|
     t.float "orient_price"
     t.integer "prepayment"
-    t.integer "stage"
+    t.integer "stage", default: 0, null: false
     t.date "in_date"
     t.date "orient_date"
     t.integer "customer_id"
@@ -153,9 +151,9 @@ ActiveRecord::Schema.define(version: 2019_03_31_114446) do
     t.date "birth_day"
     t.string "uid"
     t.string "provider"
-    t.string "phone_number"
-    t.integer "role"
     t.integer "customer_id"
+    t.string "phone_number"
+    t.integer "role", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["first_name"], name: "index_users_on_first_name"

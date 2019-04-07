@@ -1,4 +1,5 @@
 <%= render partial: 'header', :locals => { text: "About us" } %>
+<%= render 'shared/sidebar' %>
 <div class="main-container"><!-- main container -->
   <div class="space-bottom-80">
     <div class="container">
@@ -81,15 +82,25 @@
       <div class="row">
 
         <% @collaborators.each do |collaborator| %>
-        <div class="col-md-3 team-block col-sm-6"><!-- team block -->
-          <div class="well-bg">
-            <div class="well-inner"> <img src="/assets/team-1.jpg" alt="" class="img-responsive"> </div>
+        <div class="col-md-4 team-block col-sm-4"><!-- team block -->
+          <div class="gallery-block">
+          <div class="well-bg gallery-img">
+            <div class="well-inner">
+            <% if collaborator.avatar? %>
+               <%= image_tag(collaborator.avatar.url, alt: 'Collaborator',
+               class: 'img-responsive') %>
+            <% else %>
+              <%= image_tag('/assets/team.jpg', alt: 'Default Avatar',
+              class: 'img-responsive') %>
+            <% end %>
+             </div>
             <div class="team-content"><!-- team content -->
               <h3><%= collaborator.full_name %></h3>
               <span class="designation"><%= collaborator.position.humanize if collaborator.position %> </span> </div>
             <!-- /.team content -->
           </div>
         </div>
+      </div>
         <!-- /.team block -->
 
 

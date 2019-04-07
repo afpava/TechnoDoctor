@@ -19,6 +19,17 @@ Things you may want to cover:
 
 * Configuration
 
+	You should create file config/secrets.yml
+	in the file should be google credentials
+
+development:
+  GOOGLE_CLIENT_ID: <youcredentials>.apps.googleusercontent.com
+  GOOGLE_SECRET_KEY: <your_passkey>
+
+production:
+  GOOGLE_CLIENT_ID: <youcredentials>.apps.googleusercontent.com
+  GOOGLE_SECRET_KEY: <your_passkey>
+
 * Database creation
 
 * Database initialization

@@ -1,0 +1,33 @@
+<table id="mytable" class="table table-bordred table-striped">
+  <thead>
+    <th><%= obj.humanize %></th>
+      <th>Price</th>
+      <th>Edit</th>
+      <th>Delete</th>
+  </thead>
+  <tbody>
+
+    <% elements.each do |itm | %>
+
+      <tr>
+        <td><%= link_to itm.description, [main_parent, parent, itm] %></td>
+        <td>
+        <% if can? :update, itm %>
+          <%= link_to edit_polymorphic_path([main_parent, parent, itm]), :class=>'btn btn-default' do %>
+            <i class="fa fa-pencil"></i>
+          <% end %>
+        </td>
+      <% end %>
+    <td>
+      <% if can? :destroy, itm %>
+        <%= link_to [main_parent, parent, itm], :class=>'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?' } do %>
+          <i class="fa fa-trash"></i>
+        <% end %>
+    </td>
+    </tr>
+  <% end %>
+<% end %>
+
+</tbody>
+</table>
+<%== pagy_bootstrap_nav(@pagy) if current_page?(action: 'index') if @pagy.pages > 1 %>

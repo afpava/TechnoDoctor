@@ -19,23 +19,29 @@
       <div class="section-space">
         <div class="row column-block">
           <div class="col-md-4 col-sm-4">
+          <% if can? :create, Brand %>
             <h3>Create Brand</h3>
             <%= render partial: 'shared/form', :locals => { main_parent: nil ,parent: @category, pl_text: "Brand", children: @category.brands.build, extra_text: "" } %>
+          <% end %>
             <h3><%= 'Brands:' if @category.brands.any? %></h3>
             <%= render partial: 'shared/list', :locals => { elements: @category.brands.reload, main_parent: nil , parent: @category, obj: "brand"} %>
           </div>
 
           <div class="col-md-4 col-sm-4">
+          <% if can? :create, Operation %>
             <h3>Create Operation</h3>
             <%= render partial: 'shared/form', :locals => { main_parent: nil ,parent: @category, pl_text: "Operation", children: @category.operations.build, extra_text: "price" } %>
+        <% end %>
             <h3><%= 'Operations:' if @category.operations.any? %></h3>
             <%= render partial: 'shared/list', :locals => { elements: @category.operations.reload, main_parent: nil , parent: @category, obj: "operation"} %>
 
           </div>
 
           <div class="col-md-4 col-sm-4">
+        <% if can? :create, Disrepare %>
             <h3>Create Diserpare</h3>
             <%= render partial: 'shared/form', :locals => { main_parent: nil ,parent: @category, pl_text: "Disrepare", children: @category.disrepares.build, extra_text: "" } %>
+        <% end %>
             <h3><%= 'Disrepares:' if @category.disrepares.any? %></h3>
             <%= render partial: 'shared/list', :locals => { elements: @category.disrepares.reload, main_parent: nil , parent: @category, obj: "disrepare"} %>
 

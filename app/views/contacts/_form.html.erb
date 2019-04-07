@@ -1,0 +1,50 @@
+<%= form_with model: @contact, local: true  do |f| %>
+<% if @contact.errors.any? %>
+    <div id="error_explanation">
+      <h3><%= pluralize(@contact.errors.count, "error") %> prohibited this contact from being saved:</h2>
+
+      <ul>
+      <% @contact.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+<form class="contact-form" id="contactus" method="post" action="">
+  <div class="row">
+    <!-- Text input-->
+    <div class="col-md-9">
+      <div class="form-group">
+        <%= f.label :name, class: 'control-label', for: 'name' %><span class="required">*</span>
+        <%= f.text_field :name , placeholder: "Name", class: 'form-control input-md', hint: 'leave this field blank' %>
+      </div>
+    </div>
+    <!-- Text input-->
+    <div class="col-md-9">
+      <div class="form-group">
+        <%= f.label :email, class: 'control-label', for: 'name' %><span class="required">*</span>
+        <%= f.text_field :email , placeholder: "email", class: 'form-control input-md', required: true %>
+      </div>
+    </div>
+    <!-- Text input-->
+    <div class="col-md-9">
+      <div class="form-group">
+        <%= f.label :subject, class: 'control-label', for: 'subject' %><span class="required">*</span>
+        <%= f.text_field :subject , placeholder: "subject", class: 'form-control input-md', required: true %>
+      </div>
+    </div>
+    <!-- Textarea -->
+    <div class="col-md-12">
+      <div class="form-group">
+        <%= f.label :message, class: 'control-label', for: 'message' %><span class="required">*</span>
+        <%= f.text_area :message, class: 'form-control input-md', required: true, id: 'message', rows: '7' %>
+      </div>
+    </div>
+    <!-- Button -->
+    <div class="col-md-12">
+     <%= f.submit 'Send Message', class: "btn btn-default" %>
+      <span class="required pull-right">*Required Field</span> </div>
+    </div>
+  <% end %>

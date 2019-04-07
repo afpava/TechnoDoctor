@@ -1,25 +1,25 @@
 class CategoriesController < ApplicationController
 
   before_action :set_category, only: [:show, :edit, :update, :destroy]
-  #before_action :authorize, only: [:edit, :update, :destroy]
+  rescue_from Pagy::OverflowError, with: :redirect_to_last_page
+
+
   def index
-    @pagy, @categories = pagy(Category.all, items: 5)
+    @pagy, @categories = pagy(Category.all, items: 5, overflow: :exeption)
   end
 
   def show
-      @pagy, @brands = pagy(Brand.by_category(params[:id]), items: 5)
-    
+      @pagy, @brands = pagy(Brand.by_category(params[:id]), items: 5 )
+      authorize! :read, @category
   end
 
   def new
       @category = Category.new
   end
 
-  def edit
-  end
-
   def create
     @category = Category.new(category_params)
+    authorize! :create, @category
 
     if @category.save
       redirect_back(fallback_location: categories_path, notice: 'Category was successfully created.')
@@ -29,6 +29,7 @@ class CategoriesController < ApplicationController
   end
 
   def update
+    authorize! :update, @category
     if @category.update(category_params)
       redirect_to categories_path, notice: 'Category was successfully updated.'
     else
@@ -37,6 +38,7 @@ class CategoriesController < ApplicationController
   end
 
   def destroy
+    authorize! :destroy, @category
     @category.destroy
     redirect_back(fallback_location: categories_path, notice: 'Category was successfully destroyed.')
   end
@@ -52,5 +54,9 @@ class CategoriesController < ApplicationController
   def category_params
     params.require(:category).permit(:description)
   end
+
+  def redirect_to_last_page(e)
+   redirect_to url_for(page: e.pagy.last), notice: "Page ##{params[:page]} does't exist. Showing page #{e.pagy.last} instead."
+ end
 
 end

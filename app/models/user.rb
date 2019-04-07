@@ -1,10 +1,17 @@
 class User < ApplicationRecord
-  has_one :customer
+
+  belongs_to :customer, optional: true
   has_many :feedbacks
   attr_accessor :full_name, :age, :birthdays_this_month
 
+
+  require 'carrierwave'
+  require 'carrierwave/orm/activerecord'
+  mount_uploader :avatar, ImageUploader
+
+
   email_regex = /\A[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\z/i
-  validates :email, :presence => true, :uniqueness => true, :format => email_regex
+  validates :email, presence: true, uniqueness: true, format: email_regex
   validates :password, format: { with: /(?=.*?[0-9])(?=.*?[A-Za-z]).+/,
       message: "Password must contain at least one digit and one letter" }, length: { in: 6..10 }, on: :create
 
@@ -13,17 +20,6 @@ class User < ApplicationRecord
 
   has_secure_password
   enum role: [:customer, :reception, :master, :admin]
-
-  require 'carrierwave'
-  require 'carrierwave/orm/activerecord'
-  mount_uploader :avatar, ImageUploader
-
-
-  after_initialize do
-      if self.new_record?
-        self.role ||= :customer
-      end
-  end
 
   def self.find_or_create_from_auth_hash(auth)
       where(provider: auth.provider, uid: auth.uid).first_or_initialize.tap do |user|
@@ -39,8 +35,12 @@ class User < ApplicationRecord
       end
     end
 
+  def self.add_customer(phone, ticket)
+    customer = Customer.init_customer(phone, ticket)
+  end
+
   def full_name
-    [self.first_name, self.last_name].join(" ") if !self.first_name.blank? && !self.last_name.blank?
+    [self.first_name, self.last_name].join(" ")
   end
 
   def age

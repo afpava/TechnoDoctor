@@ -11,14 +11,6 @@ GIT
       tty-screen (~> 0.6.5)
       tty-tree (~> 0.2.0)
 
-GIT
-  remote: https://github.com/thoughtbot/administrate-field-image.git
-  revision: ff67471fe2998321792baaedcaefc8ed35d305e3
-  branch: master
-  specs:
-    administrate-field-image (1.1.0)
-      administrate (>= 0.2.0.rc1)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -77,6 +69,9 @@ GEM
       momentjs-rails (~> 2.8)
       sass-rails (~> 5.0)
       selectize-rails (~> 0.6)
+    administrate-field-carrierwave (0.4.0)
+      administrate (< 1.0.0)
+      rails (>= 4.2, < 6)
     administrate-field-enum (0.0.7)
       administrate
       rails (>= 4.2, < 6.0)
@@ -180,6 +175,10 @@ GEM
       activerecord
       kaminari-core (= 1.1.1)
     kaminari-core (1.1.1)
+    launchy (2.4.3)
+      addressable (~> 2.3)
+    letter_opener (1.7.0)
+      launchy (~> 2.2)
     libv8 (6.7.288.46.1)
     listen (3.1.5)
       rb-fsevent (~> 0.9, >= 0.9.4)
@@ -386,8 +385,8 @@ PLATFORMS
 DEPENDENCIES
   access-granted (~> 1.1.0)
   administrate
+  administrate-field-carrierwave (~> 0.4.0)
   administrate-field-enum
-  administrate-field-image!
   bcrypt (~> 3.1.7)
   better_errors (~> 2.5)
   binding_of_caller (~> 0.8.0)
@@ -402,6 +401,7 @@ DEPENDENCIES
   faker!
   jbuilder (~> 2.5)
   jquery-rails
+  letter_opener
   listen (>= 3.0.5, < 3.2)
   mini_racer
   omniauth-google-oauth2

@@ -1,15 +1,13 @@
 <%= form_with model: [ main_parent, parent, children ], local: true do |form| %>
-
+<%#= render partial: '/shared/form_errors', :locals => { obj: children } %>
 <div class="row column-block">
      <div class="col-md-12 col-sm-12">
         <div class="col-md-6 col-sm-6">
-          <%= form.text_field :description , class: 'input-block-level', placeholder: "#{pl_text}" %>
-
-          <%= form.text_field :price , class: 'input-block-level', placeholder: "#{extra_text}" unless extra_text.empty? %>
+          <%= form.text_field :description , class: 'form-control input-md', placeholder: "#{pl_text}", required: true %>
+          <%= form.text_field :price , class: 'form-control input-md', placeholder: "#{extra_text}", required: true unless extra_text.empty? %>
         </div>
-        <%#= form.label :name %>
           <div class="col-md-6 col-sm-6">
-                 <div class="actions">
+                 <div class="">
                    <%= button_tag type: 'submit', class: "button my-button", id: "register-button" do %>
                       <i class="fa fa-plus" aria-hidden="true"></i>
                   <% end %>

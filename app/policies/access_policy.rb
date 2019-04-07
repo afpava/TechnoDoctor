@@ -15,26 +15,62 @@ class AccessPolicy
     # The most important role should be at the top.
     # In this case an administrator.
     #
-    # role :admin, proc { |user| user.admin? } do
-    #   can :destroy, User
-    # end
+    role :admin, proc { |user| user.admin? } do
+      can :manage, User
+      can :manage, Ticket
+      can :manage, Collaborator
+      can :manage, Category
+      can :manage, Device
+      can :manage, Disrepare
+      can :manage, Operation
+      can :manage, Feedback
+      can :manage, Part
+      can :manage, Customer
+      can :manage, Brand
+      can :manage, Model
+    end
+
+    # master
+    role :master, proc { |user| user.master? } do
+      can :manage, Ticket
+      can [:read, :create, :update], Part
+      can [:read, :create, :update], Category
+      can [:read, :create, :update], Brand
+      can [:read, :create, :update], Model
+      can [:read, :create, :update], Disrepare
+      can [:read, :create, :update], Operation
+
+    end
+
+    # Reception
+    role :reception, proc { |user| user.reception? } do
+      can :create, Device
+      can :create, Customer
+      can :create, Ticket
+      can :read, Category
+      can :read, Brand
+      can :read, Model
+      can :read, Disrepare
+      can :read, Operation
+
+    end
 
     # More privileged role, applies to registered users.
-    #
-    # role :member, proc { |user| user.registered? } do
-    #   can :create, Post
-    #   can :create, Comment
-    #   can [:update, :destroy], Post do |post, user|
-    #     post.author == user
-    #   end
-    # end
+    role :customer, proc { |user| user.customer? } do
+      can :create, Feedback
+      can [:update, :destroy], Feedback do |feedback, current_user|
+        feedback.user == current_user
+      end
+      can [:update, :destroy], User do |user, current_user|
+        user == current_user
+      end
+    end
 
     # The base role with no additional conditions.
     # Applies to every user.
     #
-    # role :guest do
-    #  can :read, Post
-    #  can :read, Comment
-    # end
+    role :guest do
+     can :read, Feedback
+    end
   end
 end

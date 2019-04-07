@@ -24,7 +24,7 @@ RSpec.describe UsersController, type: :controller do
         get :new
       end
 
-      it{ expect(response).to redirect_to(root_path)}
+      it{ expect(response).to redirect_to(root_path) }
     end
 
   end #GET #new
@@ -37,7 +37,7 @@ RSpec.describe UsersController, type: :controller do
         get :index
       end
 
-      it{ expect(response).to render_template('sessions/first.html.erb') }
+      it{ expect(response).to redirect_to(root_path) }
     end
 
     context 'should return current_user as a user' do
@@ -51,42 +51,42 @@ RSpec.describe UsersController, type: :controller do
 
   end #GET index
 
-  describe 'GET #show' do
-    # context 'should return all Users' do
-    #     before do
-    #       allow(controller).to receive(:current_user) {user}
-    #       user
-    #       get :show, params: { id: user.id }
-    #     end
-    #
-    #     it{ expect(assigns(:users)).to include(user) }
-    # end
-
-    context 'should redirect to sign_in if not authorized' do
-      before do
-        user
-        get :show, params: { id: user.id }
-      end
-
-      it{ expect(response).to render_template('sessions/first.html.erb') }
-    end
-
-     context 'should redirect to root_path if no admin or other user.id' do
-      let(:post1) {user.posts.create(title:"This is test#{rand(1000)}", text:'Test message')}
-       before do
-         allow(controller).to receive(:current_user) {person1}
-         user
-         person1
-         person2
-       end
-       it do
-         get :show, params: { id: person2.id }
-        expect(flash[:alert]).to eq 'You can view and edit only yours profile.'
-        expect(response).to redirect_to(root_path)
-      end
-    end
-
-  end #GET show
+  # describe 'GET #show' do
+  #   # context 'should return all Users' do
+  #   #     before do
+  #   #       allow(controller).to receive(:current_user) {user}
+  #   #       user
+  #   #       get :show, params: { id: user.id }
+  #   #     end
+  #   #
+  #   #     it{ expect(assigns(:users)).to include(user) }
+  #   # end
+  #
+  #   context 'should redirect to sign_in if not authorized' do
+  #     before do
+  #       user
+  #       get :show, params: { id: user.id }
+  #     end
+  #
+  #     it{ expect(response).to render_template('sessions/first.html.erb') }
+  #   end
+  #
+  #    context 'should redirect to root_path if no admin or other user.id' do
+  #     let(:post1) {user.posts.create(title:"This is test#{rand(1000)}", text:'Test message')}
+  #      before do
+  #        allow(controller).to receive(:current_user) {person1}
+  #        user
+  #        person1
+  #        person2
+  #      end
+  #      it do
+  #        get :show, params: { id: person2.id }
+  #       expect(flash[:alert]).to eq 'You can view and edit only yours profile.'
+  #       expect(response).to redirect_to(root_path)
+  #     end
+  #   end
+  #
+  # end #GET show
 
   describe 'GET #edit' do
     context 'should return exect user' do
@@ -105,24 +105,24 @@ RSpec.describe UsersController, type: :controller do
         get :edit, params: { id: user.id }
       end
 
-      it{ expect(response).to render_template('sessions/first.html.erb') }
+      it{ expect(response).to redirect_to(root_path) }
     end
 
-     context 'should redirect to root_path if no admin or other user.id' do
-      let(:post1) {user.posts.create(title:"This is test#{rand(1000)}", text:'Test message')}
-       before do
-         allow(controller).to receive(:current_user) {person1}
-         user
-         person1
-         person2
-       end
-       it do
-         get :show, params: { id: person2.id }
-        expect(flash[:alert]).to eq 'You can view and edit only yours profile.'
-        expect(response).to redirect_to(root_path)
-      end
-
-    end
+    #  context 'should redirect to root_path if no admin or other user.id' do
+    #   let(:post1) {user.posts.create(title:"This is test#{rand(1000)}", text:'Test message')}
+    #    before do
+    #      allow(controller).to receive(:current_user) {person1}
+    #      user
+    #      person1
+    #      person2
+    #    end
+    #    it do
+    #      get :show, params: { id: person2.id }
+    #     expect(flash[:alert]).to eq 'You can view and edit only yours profile.'
+    #     expect(response).to redirect_to(root_path)
+    #   end
+    #
+    # end
 
   end #GET edit
 

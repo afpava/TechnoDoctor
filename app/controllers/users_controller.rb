@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
   skip_before_action :require_login, only: [:new, :create]
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  before_action :authorize_admin, only: [:show, :edit]
       def new
           if current_user
             redirect_to root_path, alert: 'You are signed in, logout first.'
@@ -13,6 +12,8 @@ class UsersController < ApplicationController
       def index
         # @users = User.all
         @user = current_user
+        @customer = current_user.customer
+        @tickets =@customer&.tickets
       end
 
       def edit

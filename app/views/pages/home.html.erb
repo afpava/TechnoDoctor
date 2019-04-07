@@ -35,8 +35,18 @@
   </div>
 </div>
 
+<% if notice %>
+<p id="notice" class="alert alert-success" role="alert"><%= notice %></p>
+<% end %>
+
+<% if alert %>
+<p class="alert alert-danger" role="alert"><%= alert %></p>
+<% end %>
+<%#= render 'shared/flashes' %>
 <div class="section-space">
   <div class="container">
+
+
     <div class="row">
       <div class="col-md-offset-1 col-md-10 section-title"><!-- section title -->
         <h1>Get Your Repair Started</h1>

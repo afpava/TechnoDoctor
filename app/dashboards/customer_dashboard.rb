@@ -55,7 +55,7 @@ class CustomerDashboard < Administrate::BaseDashboard
     :first_name,
     :last_name,
     :phone_number,
-    :ticket_id,
+    # :ticket_id,
   ].freeze
 
   # Overwrite this method to customize how customers are displayed

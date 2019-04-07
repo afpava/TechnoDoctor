@@ -1,0 +1,46 @@
+<!-- Modal -->
+<!-- /.sidebar -->
+<!-- Button trigger modal -->
+
+<!-- Sidebar Right -->
+<div class="modal fade right" id="sidebar-right" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">
+          <span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Service Menu</h4>
+      </div>
+      <div class="modal-body">
+
+        <ul class="nav nav-pills nav-stacked text-center lead">
+            <ul class="listnone long-arrow-right sidenav">
+
+            <%= active_page("User index", users_path) %>
+            <%= active_page("Customers", customers_path)%>
+            <%= active_page("Categories", categories_path)%>
+            <%= active_page("Tickets", tickets_path) %>
+
+          </ul>
+
+          <li role="presentation" class="dropdown">
+            <a href="#" class="dropdown-toggle" id="myTabDrop1" data-toggle="dropdown" aria-controls="myTabDrop1-contents" aria-expanded="false">Services
+              <span class="fa fa-fw fa-chevron-down"></span></a>
+            <ul class="dropdown-menu btn-block">
+              <li>
+                <a href="#design" role="tab">Design</a>
+              </li>
+              <li>
+                <a href="#develop" role="tab">Develop</a>
+              </li>
+              <li>
+                <a href="#support" role="tab">Support</a>
+              </li>
+            </ul>
+          </li>
+          </ul>
+
+    </div>
+    </div>
+  </div>
+</div>
