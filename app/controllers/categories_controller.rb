@@ -1,11 +1,10 @@
 class CategoriesController < ApplicationController
 
   before_action :set_category, only: [:show, :edit, :update, :destroy]
-  rescue_from Pagy::OverflowError, with: :redirect_to_last_page
-
 
   def index
-    @pagy, @categories = pagy(Category.all, items: 5, overflow: :exeption)
+      @pagy, @categories = pagy(Category.all, items: 5)
+      authorize! :create, Category
   end
 
   def show
@@ -15,6 +14,7 @@ class CategoriesController < ApplicationController
 
   def new
       @category = Category.new
+      authorize! :create, Category
   end
 
   def create

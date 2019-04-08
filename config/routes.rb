@@ -38,6 +38,9 @@ Rails.application.routes.draw do
 
   resources :users do
     resources :feedbacks, except: [:new, :create]
+    member do
+       patch :customerize
+    end
   end
 
   resources :tickets do
@@ -57,6 +60,7 @@ Rails.application.routes.draw do
   resources :categories do
     resources :disrepares
   end
+  
 root 'pages#home'
 
 end

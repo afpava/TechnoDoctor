@@ -31,11 +31,13 @@ production:
   GOOGLE_SECRET_KEY: <your_passkey>
 
 * Database creation
+  rake db:migrate, rake db:test:prepare,
 
 * Database initialization
+  rake db:seed - for testing purposes.
 
 * How to run the test suite
-
+   rspec
 * Services (job queues, cache servers, search engines, etc.)
 
 * Deployment instructions

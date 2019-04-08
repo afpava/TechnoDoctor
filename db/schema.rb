@@ -156,6 +156,7 @@ ActiveRecord::Schema.define(version: 2019_03_31_114446) do
     t.integer "role", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["customer_id"], name: "index_users_on_customer_id"
     t.index ["first_name"], name: "index_users_on_first_name"
     t.index ["last_name"], name: "index_users_on_last_name"
     t.index ["phone_number"], name: "index_users_on_phone_number"

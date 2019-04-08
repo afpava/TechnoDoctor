@@ -6,21 +6,26 @@ class BrandsController < ApplicationController
   #before_action :authorize, only: [:edit, :update, :destroy]
   def index
      @pagy, @brands = pagy(Brand.by_category(params[:id]), items: 5)
+     authorize! :read, Brand
   end
 
   def show
-  @pagy, @models = pagy(@brand.models)
+    @pagy, @models = pagy(@brand.models)
+    authorize! :read, @brand
   end
 
   def new
     @brand = @category.brands.build
+    authorize! :create, @brand
   end
 
   def edit
+    authorize! :edit, @brand
 
   end
 
   def create
+    authorize! :create, @brand
     @brand = @category.brands.create(brand_params)
 
     if @brand.save
@@ -31,6 +36,7 @@ class BrandsController < ApplicationController
   end
 
   def update
+    authorize! :update, @brand
     if @brand.update(brand_params)
       redirect_to category_path(@category), notice: 'Brand was successfully updated.'
     else
@@ -39,6 +45,7 @@ class BrandsController < ApplicationController
   end
 
   def destroy
+    authorize! :destory, @brand
     @brand.destroy
     redirect_to category_path(@category), notice: 'Brand was successfully destroyed.'
   end

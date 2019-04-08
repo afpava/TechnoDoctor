@@ -8,7 +8,7 @@ class UserDashboard < Administrate::BaseDashboard
   # which determines how the attribute is displayed
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
-    customer: Field::HasOne,
+    customer: Field::BelongsTo,
     feedbacks: Field::HasMany,
     id: Field::Number,
     email: Field::String,
@@ -28,7 +28,7 @@ class UserDashboard < Administrate::BaseDashboard
     provider: Field::String,
     phone_number: Field::String,
     role: Field::Enum,
-    customer_id: Field::Number,
+    # customer: Field::Number,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
   }.freeze
@@ -62,7 +62,7 @@ class UserDashboard < Administrate::BaseDashboard
     :provider,
     :phone_number,
     :role,
-    :customer_id,
+    :customer,
     :created_at,
     :updated_at,
   ].freeze

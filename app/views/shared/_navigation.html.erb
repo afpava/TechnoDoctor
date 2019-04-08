@@ -13,7 +13,7 @@
               <%= active_page("About Us", "/pages/about-us") %>
 
               <li>
-                <a href="/pages/pc-mac" title="" class="link">Repair Service</a>
+                <%= page_link("Repair Service", "/pages/service-list", "link") %>
                 <ul>
                   <%= active_page("PC and IMAC Repair", "/pages/pc-mac") %>
                   <%= active_page("Laptop Repair", "/pages/laptop") %>
@@ -55,8 +55,14 @@
                             </div>
                           </br>
                             <div class="social-buttons">
-                            <button type="button" class="btn" data-toggle="modal" data-target="#sidebar-right">Service Menu</button>
-                          </div>
+                              <%= link_to 'Cabinet', users_path, class: 'btn' %>
+                            </div>
+                          </br>
+                          <% if !current_user.customer? %>
+                            <div class="social-buttons">
+                              <%= button_tag class:'btn', data: {target: "#sidebar-right",  toggle: "modal"} do content_tag(:b, "Service Menu") end %>
+                            </div>
+                          <% end %>
 
                           </div>
                           </div>

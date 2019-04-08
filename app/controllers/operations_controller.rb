@@ -6,14 +6,18 @@ class OperationsController < ApplicationController
 
     def index
       @pagy, @operations = pagy(Operation.by_category(params[:id]))
+      authorize! :read, Operation
+
     end
 
     def new
       @operation = @category.operations.build
+      authorize! :create, @operation
     end
 
     def create
       @operation = @category.operations.create(operation_params)
+      authorize! :create,  @operation
 
       if @operation.save
         redirect_to category_path(@category), notice: 'Operation was successfully created.'
@@ -23,6 +27,7 @@ class OperationsController < ApplicationController
     end
 
     def update
+      authorize! :update,  @operation
       if @operation.update(brand_params)
         redirect_to category_path(@category), notice: 'Operation was successfully updated.'
       else
@@ -32,6 +37,7 @@ class OperationsController < ApplicationController
 
     def destroy
       @operation.destroy
+      authorize! :destroy,  @operation
       redirect_to category_path(@category), notice: 'Operation was successfully destroyed.'
     end
 

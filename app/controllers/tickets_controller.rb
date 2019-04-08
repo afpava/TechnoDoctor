@@ -4,7 +4,7 @@ class TicketsController < ApplicationController
   #before_action :authorize, only: [:edit, :update, :destroy]
   def index
     @tickets = Ticket.all.includes(:customer,{ device: [:model]}, :collaborator )
-    # authorize! :read, @tickets
+    authorize! :read, Ticket
   end
 
   def show

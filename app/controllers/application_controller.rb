@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
     # binding.pry
     redirect_to root_path, alert: "You don't have permission to access this page."
   end
+  rescue_from Pagy::OverflowError, with: :redirect_to_last_page
 
   private
 

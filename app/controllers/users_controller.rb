@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   skip_before_action :require_login, only: [:new, :create]
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :customerize]
       def new
           if current_user
             redirect_to root_path, alert: 'You are signed in, logout first.'
@@ -10,14 +10,24 @@ class UsersController < ApplicationController
       end
 
       def index
-        # @users = User.all
         @user = current_user
         @customer = current_user.customer
-        @tickets =@customer&.tickets
+
+        if !current_user.customer?
+          @pagy, @tickets = pagy(Ticket.all.order(id: :desc), items: 6)
+        else
+          @tickets =@customer&.tickets
+        end
       end
 
       def edit
-          @user = User.find(params[:id])
+        @user = User.find(params[:id])
+      end
+
+      def customerize
+        current_user.add_customer_relation(params[:user][:ticket_number].to_s, params[:user][:phone_number].to_s)
+         # @task.update_attribute(:completed, params[:completed])
+         # params[:completed] == "true" ? (redirect_to root_path, notice: "Todo item completed") : (redirect_to root_path, notice: "Todo item unchecked")
       end
 
       def update

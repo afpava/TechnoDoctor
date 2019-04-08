@@ -12,4 +12,9 @@ module ApplicationHelper
       end
     end
   end
+
+  def page_link(title, path, clazz)
+      link_to title, path, class: clazz, title: title
+  end
+
 end

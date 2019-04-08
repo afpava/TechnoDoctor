@@ -1,9 +1,11 @@
-<div class="container table-responsive">
+
   <table class="table table-bordred table-striped" >
     <thead>
       <th>Num.</th>
       <th>Device</th>
+      <% if !current_user.customer? %>
       <th>Customer</th>
+      <% end %>
       <th>Stage</th>
       <th>Total Price</th>
       <th>Collaborator</th>
@@ -12,7 +14,9 @@
     <% tickets.each do | ticket | %>
     <tr align="center"><td><%=link_to ticket.id, ticket %> </td>
       <td> <%= ticket.device.model.description %> </td>
+      <% if !current_user.customer? %>
       <td> <%= ticket.customer.full_name %> </td>
+      <% end %>
       <td> <%= ticket.stage.humanize %> </td>
       <td> <%= ticket.total_price.to_s + ' hrn.' if ticket.total_price.present? %> </td>
       <td> <%= ticket.collaborator.nickname.to_s if ticket.collaborator.present?  %> </td>
@@ -21,4 +25,3 @@
     </tr>
     <% end %>
   </table>
-</div>

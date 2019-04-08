@@ -39,14 +39,15 @@ class AccessPolicy
       can [:read, :create, :update], Model
       can [:read, :create, :update], Disrepare
       can [:read, :create, :update], Operation
+      can :manage, Customer
 
     end
 
     # Reception
     role :reception, proc { |user| user.reception? } do
-      can :create, Device
-      can :create, Customer
-      can :create, Ticket
+      can [:read, :create, :update], Device
+      can [:read, :create, :update], Customer
+      can [:read, :create, :update], Ticket
       can :read, Category
       can :read, Brand
       can :read, Model

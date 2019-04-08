@@ -10,7 +10,7 @@ class CreateUsers < ActiveRecord::Migration[5.2]
       t.date :birth_day
       t.string :uid
       t.string :provider
-      t.integer :customer_id
+      t.references :customer, foreign_key: true
       t.string :phone_number, index: true
       t.integer :role, default: 0, null: false
 

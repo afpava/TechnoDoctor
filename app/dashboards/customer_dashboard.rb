@@ -9,7 +9,7 @@ class CustomerDashboard < Administrate::BaseDashboard
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
     tickets: Field::HasMany,
-    user: Field::BelongsTo,
+    users: Field::HasMany,
     id: Field::Number,
     first_name: Field::String,
     last_name: Field::String,
@@ -26,7 +26,7 @@ class CustomerDashboard < Administrate::BaseDashboard
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = [
     :tickets,
-    :user,
+    :users,
     :id,
     :first_name,
     :phone_number,
@@ -36,7 +36,7 @@ class CustomerDashboard < Administrate::BaseDashboard
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = [
     :tickets,
-    :user,
+    :users,
     :id,
     :first_name,
     :last_name,
@@ -51,7 +51,7 @@ class CustomerDashboard < Administrate::BaseDashboard
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = [
     :tickets,
-    :user,
+    :users,
     :first_name,
     :last_name,
     :phone_number,

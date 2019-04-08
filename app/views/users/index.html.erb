@@ -3,14 +3,25 @@
 <div class="main-container">
   <div class="row">
     <div class="col-md-9 col-sm-9">
-        <%= render partial: 'shared/ticket', :locals => { tickets: current_user&.customer&.tickets } if
-               current_user&.customer&.tickets.present? %>
+               <% if can? :create, Ticket %>
+               <%= link_to 'New Customer', customers_path, :class=>'btn btn-default' %>
+               <% end %>
+               <div class="section-space"><!-- main container -->
+                 <div class="row">
+                   <div class="table-responsive-md">
+                     <%= render partial: 'shared/ticket', :locals => { tickets: @tickets } unless @tickets.blank? %>
+                   </div>
+                 </div>
+               </div>
     </div>
 
     <div class="col-md-3 col-sm-3">
       <div class="well-bg">
+
         <div class="testimonial-v3-author">
           <div class="testimonial-v3-img">
+            <%= button_tag data: {target: "#Customerize",  toggle: "modal"} do content_tag(:b, "add ticket") end %>
+
             <%= image_tag(current_user.avatar.url, alt: 'Avatar',
                class: 'img-circle img-responsive',
                  style: 'height: 75px;') if current_user.avatar? %>
@@ -26,11 +37,13 @@
 
         <div class="well-inner">
           <div class="testimonial-v3-caption"></br>
-          <%= content_tag(:strong, "First Name: ") + current_user.first_name + tag(:br) if current_user.first_name? %>
-          <%= content_tag(:strong, "Nickname: ") + current_user.nickname + tag(:br) if current_user.nickname? %>
-
-          <%= content_tag(:strong, "Last Name: ") + current_user.last_name + tag(:br) if current_user.last_name? %>
-          <%= content_tag(:strong, "email: ") + current_user.email + tag(:br) if current_user.email? %>
+          <%= content_tag(:strong, "First Name: ") + tag(:br) + current_user.first_name + tag(:br) if current_user.first_name? %>
+          <%= content_tag(:strong, "Nickname: ") + tag(:br) + current_user.nickname + tag(:br) if current_user.nickname? %>
+          <%= content_tag(:strong, "Last Name: ") + tag(:br) + current_user.last_name + tag(:br) if current_user.last_name? %>
+          <%= content_tag(:strong, "email: ") + tag(:br) + current_user.email + tag(:br) if current_user.email? %>
+          <hr>
+          <%= content_tag(:strong, "Customer: ") + tag(:br) + current_user.customer.full_name + tag(:br) if current_user.customer? %>
+          <%= content_tag(:strong, "phone_number: ") + tag(:br) + current_user.customer.phone_number + tag(:br) if current_user.customer? %>
 
           <tr>
             <td><%= link_to 'Edit', edit_user_path(@user), :class=>'btn btn-default' %></td>
@@ -39,6 +52,35 @@
       </div>
     </div>
   </div>
+
+
+<!-- Modal -->
+<div class="modal fade customerize-modal" tabindex="-1" role="dialog" aria-labelledby="Customerize" id="Customerize">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <h4 class="modal-title" id="Customerize">Find Repares</h4>
+      </div>
+      <div class="modal-body">
+          <%= form_with model: @user, url: customerize_user_path(@user), method: :patch do |f| %>
+          <div class="form-group">
+            <%= f.label :ticket_number %>
+            <%= f.text_field :ticket_number, class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <%= f.label :phone_number %>
+            <%= f.text_area :phone_number, class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <%= f.submit class: "btn btn-primary" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal -->
 
 </div>
 </div>

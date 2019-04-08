@@ -7,7 +7,7 @@ class Customer < ApplicationRecord
   end
 
   has_many :tickets
-  has_one :user, foreign_key: 'id'
+  has_many :users
 
   validates :phone_number, presence: true, uniqueness: true
   validates :first_name, presence: true
