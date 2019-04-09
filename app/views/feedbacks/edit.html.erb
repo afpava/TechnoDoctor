@@ -1,0 +1,22 @@
+<%= render partial: '/pages/header', :locals => { text: "Feedback" } %>
+
+<div class="main-container"><!-- main container -->
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 content col-sm-12"><!-- content -->
+        <div class="row">
+          <div class="col-md-12">
+            <h1>Give Us Your Feedback</h1>
+            <p>The most important for us is your feedback.</p>
+          </div>
+          <div class="col-md-12">
+          <%= render 'form' %>
+        </div>
+      </div>
+      </div>
+      <!-- /.content -->
+      <%= render '/shared/side_address' %>
+    </div>
+  </div>
+</div>
+<!-- /.main container -->

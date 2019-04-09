@@ -1,7 +1,6 @@
 class TicketsController < ApplicationController
 
   before_action :set_ticket, only: [ :destroy, :edit, :update]
-  #before_action :authorize, only: [:edit, :update, :destroy]
   def index
     @tickets = Ticket.all.includes(:customer,{ device: [:model]}, :collaborator )
     authorize! :read, Ticket
@@ -127,7 +126,11 @@ class TicketsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def ticket_params
-    params.require(:ticket).permit(:orient_price, :prepayment, :stage, :in_date, :orient_date, :total_price )
+    params.require(:ticket).permit(:orient_price, :prepayment, :stage, :in_date, :orient_date, :total_price,
+      parts_attributes: [ :id, :description, :price, :quantity, :ticket_id ],
+     operations_attributes: [ :id, :description, :price, :category_id ],
+     disrepares_attributes: [ :id, :description, :category_id ],
+    )
   end
 
 end

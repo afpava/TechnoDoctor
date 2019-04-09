@@ -25,7 +25,19 @@ class UsersController < ApplicationController
       end
 
       def customerize
-        current_user.add_customer_relation(params[:user][:ticket_number].to_s, params[:user][:phone_number].to_s)
+        phone = params[:user][:phone_number].delete('^0-9+')
+        ticket_id = params[:user][:ticket_number].to_s.delete('^0-9+')
+        customer_id = Customer.init_customer(phone, ticket_id).pluck(:id).first
+        # binding.pry
+        if customer_id.blank?
+          redirect_to users_path, alert: "Ticket not found"
+        else
+          customer = Customer.find(customer_id)
+          customer.users << current_user
+          redirect_to users_path, notice: "Repares where sucsessfuly added."
+        end
+        # binding.pry
+        # current_user.add_customer_relation(params[:user][:ticket_number].to_s, params[:user][:phone_number].to_s)
          # @task.update_attribute(:completed, params[:completed])
          # params[:completed] == "true" ? (redirect_to root_path, notice: "Todo item completed") : (redirect_to root_path, notice: "Todo item unchecked")
       end

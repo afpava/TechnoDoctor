@@ -1,0 +1,32 @@
+
+  <table class="table table-bordred table-striped" >
+    <thead>
+      <th>Feedback Num.</th>
+      <th>Feedback Title</th>
+      <th>Feedback Text</th>
+      <th>Stage</th>
+      <th>Edit</th>
+      <th>Delete</th>
+    </thead>
+    <% feedbacks.each do | feedback | %>
+    <tr align="center"><td><%=link_to feedback.id, feedback_path(feedback) %> </td>
+      <td> <%= feedback.title %> </td>
+      <td> <%= sanitize feedback.text %> </td>
+      <td> <%= feedback.status.humanize %> </td>
+      <td>
+      <% if can? :update, feedback %>
+        <%= link_to edit_polymorphic_path(feedback), :class=>'btn btn-default' do %>
+          <i class="fa fa-pencil"></i>
+        <% end %>
+      </td>
+    <% end %>
+  <td>
+    <% if can? :destroy, feedback %>
+      <%= link_to feedback, :class=>'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?' } do %>
+        <i class="fa fa-trash"></i>
+      <% end %>
+  </td>
+    </tr>
+    <% end %>
+    <% end %>
+  </table>

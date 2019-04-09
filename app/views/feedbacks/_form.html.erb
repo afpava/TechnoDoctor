@@ -1,0 +1,32 @@
+<%= form_with model: @feedback, class: "feedbackform", local: true do |f| %>
+<% if @feedback.errors.any? %>
+  <div class="error_messages">
+    <h2>Form is invalid</h2>
+    <ul>
+      <% @feedback.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+<div class="row">
+  <div class="col-md-6">
+    <div class="form-group">
+      <%= f.label :title %>
+      <span class="required">*</span></br>
+    <%= f.text_field :title, class: "form-control", required: true %>
+  </div>
+</div>
+<div class="col-md-12">
+  <div class="form-group">
+    <%= f.label :text %>
+    <span class="required">*</span></br>
+  <%= f.text_area :text, rows: "7", class: "form-control", required: true %>
+</div>
+</div>
+<div class="col-md-12">
+<%= f.submit "Submit Feedback", class: "btn btn-default" %>
+<span class="required pull-right">*Required Field</span>
+</div>
+</div>
+<% end %>

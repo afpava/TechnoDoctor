@@ -1,5 +1,4 @@
 class User < ApplicationRecord
-
   belongs_to :customer, optional: true
   has_many :feedbacks
   attr_accessor :full_name, :age, :birthdays_this_month, :search_customer, :add_customer_relation
@@ -55,7 +54,7 @@ class User < ApplicationRecord
 
   def add_customer_relation(ticket_id, phone_number)
     binding.pry
-    
+
     phone = phone_number.delete('^0-9+')
     customer_id = Customer.init_customer(phone, ticket).pluck(:id).first
     user = self

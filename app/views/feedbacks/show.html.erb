@@ -1,0 +1,35 @@
+<%= render partial: '/pages/header', :locals => { text: "Feedback" } %>
+
+<div class="main-container">
+  <!-- main container -->
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 content col-sm-12">
+        <!-- content -->
+        <div class="well-bg widget-schedule">
+          <div class="well-inner">
+            <div class="row">
+              <div class="col-md-12, testemonial-v-2-caption">
+                <h1><%= @feedback.title%></h1>
+              </div>
+              <div class="col-md-12">
+                <p><%= sanitize @feedback.text%></p>
+              </div>
+              <div class="col-md-12"></br>
+              <p class="pull-right"><%= @feedback.user.full_name%></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /.content -->
+
+    <div class="col-md-4 sidebar col-sm-12">
+      <!-- sidebar -->
+      <%= render '/shared/side_address' %>
+    </div>
+    <!-- /.sidebar -->
+  </div>
+</div>
+</div>
+<!-- /.main container -->

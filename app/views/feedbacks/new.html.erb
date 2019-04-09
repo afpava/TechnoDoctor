@@ -1,4 +1,4 @@
-<%= render partial: '/pages/header', :locals => { text: "Contact us" } %>
+<%= render partial: '/pages/header', :locals => { text: "Feedback" } %>
 <%= render 'shared/flashes' %>
 <div class="main-container">
   <!-- main container -->
@@ -8,19 +8,18 @@
         <!-- content -->
         <div class="row">
           <div class="col-md-12">
-            <h1>Get In Touch With TechnoDoctor &trade;</h1>
-            <p>Simply complete the enquiry form &amp; We will respond as soon as we can.</p>
+            <h1>Give Us Your Feedback</h1>
+            <p>The most important for us is your feedback.</p>
           </div>
           <div class="col-md-12">
-            <%= render partial: 'form', :locals => { contact: @contact } %>
+            <%= render 'form' %>
           </div>
         </div>
       </div>
       <!-- /.content -->
       <div class="col-md-offset-1 col-md-4 sidebar col-sm-12">
-        <!-- sidebar -->
-        <%= render '/shared/side_address' %>
 
+        <%= render '/shared/side_address' %>
       </div>
     </div>
   </div>

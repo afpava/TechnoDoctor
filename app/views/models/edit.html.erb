@@ -1,11 +1,11 @@
-<%= render partial: '/pages/header', :locals => { text: "New Category" } %>
+<%= render partial: '/pages/header', :locals => { text: "Edit Model" } %>
 <div class="section-space"><!-- main container -->
 	<div class="row">
 		<div class="col-md-offset-2 col-md-5 col-sm-offset-2 col-sm-5">
-			<td><%= link_to category_path( @category ), :class=>'btn btn-primary btn-sm' do %>
+			<td><%= link_to category_brand_path(@category, @brand), :class=>'btn btn-primary btn-sm' do %>
          <i class="fa fa-undo"></i>
          <% end %></td>
-				<%= render 'form', brand: [@brand, @category] %>
+				<%= render 'form', brand: [@model, @brand] %>
 		</div>
 	</div>
 </div>

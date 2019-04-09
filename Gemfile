@@ -16,6 +16,7 @@ gem 'bootstrap-sass', '~> 3.3.6'
 gem 'jquery-rails'
 gem 'mini_racer'
 # gem "bootstrap_flash_messages", "~> 1.0.1"
+gem 'selectize-rails'
 
 #Pagination
 gem 'pagy'

@@ -1,0 +1,21 @@
+<%= render partial: 'pages/header', :locals => { text: "Feedback list" } %>
+<div class="main-container">
+  <!-- main container -->
+  <div class="container">
+    <div class="row">
+      <% if can? :create, Feedback %>
+        <%= link_to 'New Feedback', new_feedback_path, :class=>'btn btn-default' %>
+      <% end %>
+      <div class="section-space">
+        <!-- main container -->
+        <div class="table">
+          <div class="row">
+            <div class="col-md-12 post-block">
+              <%= render partial: 'feedbacks', :locals => { feedbacks: @feedbacks } unless @feedbacks.blank? %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

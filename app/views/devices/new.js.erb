@@ -1,0 +1,15 @@
+$(document).on("change", "#brand select", function(){
+  var category = $(this).val();
+  $.ajax({
+    url: <%= j edit_ticket_path(@ticket)%>,
+    method: "GET",
+    dataType: "json",
+    data: {category: category},
+    error: function (xhr, status, error) {
+      console.error('AJAX Error: ' + status + error);
+    },
+    success: function (response) {
+      alert(1);
+      }
+  });
+});

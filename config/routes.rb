@@ -16,7 +16,6 @@ Rails.application.routes.draw do
       root to: "brands#index"
     end
 
-
       get 'signup' => 'users#new'
       get 'login' => 'sessions#new'
       get 'login_google' , to: redirect('/auth/google_oauth2'), as: 'login_google'
@@ -25,19 +24,18 @@ Rails.application.routes.draw do
       get 'logout' => 'sessions#destroy'
       get 'contact' => 'contacts#new'
 
-
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   # resources :customers do
       get '/pages/:page' => 'pages#show'
-      get 'home', :to => redirect('/pages/home')
 
   resources :sessions , except: [:edit, :update]
-  resources :feedbacks, only: [:new, :create]
+  resources :feedbacks
   resources :customers
+  resources :devices
   resources :contacts, only: [:new, :create]
 
   resources :users do
-    resources :feedbacks, except: [:new, :create]
+    resources :feedbacks, except: [:show, :index, :new, :create]
     member do
        patch :customerize
     end
@@ -49,18 +47,18 @@ Rails.application.routes.draw do
 
   resources :categories do
     resources :brands do
-      resources :models
+      resources :models, exept: [:show]
     end
   end
 
   resources :categories do
-    resources :operations
+    resources :operations, exept: [:show]
   end
 
   resources :categories do
-    resources :disrepares
+    resources :disrepares, exept: [:show]
   end
-  
-root 'pages#home'
+
+root 'pages#index'
 
 end

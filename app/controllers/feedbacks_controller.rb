@@ -1,6 +1,6 @@
 class FeedbacksController < ApplicationController
 
-    before_action :set_feedback, only: [:index, :show, :destroy, :edit, :update]
+    before_action :set_feedback, only: [ :destroy, :edit, :update]
     #before_action :authorize, only: [:edit, :update, :destroy]
     def index
       @feedbacks = current_user.feedbacks
@@ -10,27 +10,36 @@ class FeedbacksController < ApplicationController
       @feedback = current_user.feedbacks.build
     end
 
+    def show
+      @feedback = Feedback.find(params[:id])
+      authorize! :read, @feedback
+    end
+
+
     def create
       @feedback = current_user.feedbacks.create(feedback_params)
+      authorize! :create, @feedback
 
       if @feedback.save
-        redirect_to brand_path(@brand), notice: 'Feedback was successfully created.'
+        redirect_to users_path, notice: 'Feedback was successfully created.'
       else
         render :new
       end
     end
 
     def update
+      authorize! :update, @feedback
       if @feedback.update(feedback_params)
-        redirect_to brand_path(@brand), notice: 'Feedback was successfully updated.'
+        redirect_to users_path, notice: 'Feedback was successfully updated.'
       else
         render :edit
       end
     end
 
     def destroy
+      authorize! :destroy, @feedback
       @feedback.destroy
-      redirect_to brand_path(@brand), notice: 'Feedback was successfully destroyed.'
+      redirect_to users_path, notice: 'Feedback was successfully destroyed.'
     end
 
 

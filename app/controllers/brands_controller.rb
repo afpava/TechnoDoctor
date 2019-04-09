@@ -16,17 +16,16 @@ class BrandsController < ApplicationController
 
   def new
     @brand = @category.brands.build
-    authorize! :create, @brand
   end
 
   def edit
-    authorize! :edit, @brand
-
+    authorize! :update, @brand
   end
 
+
   def create
-    authorize! :create, @brand
     @brand = @category.brands.create(brand_params)
+    authorize! :create, @brand
 
     if @brand.save
       redirect_to category_path(@category), notice: 'Brand was successfully created.'
@@ -45,7 +44,7 @@ class BrandsController < ApplicationController
   end
 
   def destroy
-    authorize! :destory, @brand
+    authorize! :destroy, @brand
     @brand.destroy
     redirect_to category_path(@category), notice: 'Brand was successfully destroyed.'
   end

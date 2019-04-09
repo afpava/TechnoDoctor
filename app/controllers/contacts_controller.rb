@@ -7,7 +7,7 @@ class ContactsController < ApplicationController
     @contact = Contact.new(contact_params)
 
     if @contact.valid?
-      ContactsMailer.guest_message(contact_params).deliver.now
+      ContactsMailer.guest_message(contact_params).deliver_now
 
       redirect_to root_path, notice: 'Mail was send'
     else

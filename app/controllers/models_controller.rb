@@ -1,22 +1,15 @@
 class ModelsController < ApplicationController
 
   before_action :set_model, only: [:index, :show, :destroy, :edit, :update]
-  #before_action :authorize, only: [:edit, :update, :destroy]
 
   def index
     @pagy, @models = pagy(Model.all)
     authorize! :read, Model
   end
 
-  def show
-
-    authorize! :read, Model
-  end
-
   def new
     @brand = Brand.find(params[:brand_id])
     @model = @brand.models.build
-    authorize! :create, @model
   end
 
   def create
@@ -52,6 +45,7 @@ class ModelsController < ApplicationController
   def set_model
     @brand = Brand.find(params[:brand_id])
     @model = @brand.models.find(params[:id])
+    @category = @brand.category
 
   end
 

@@ -1,10 +1,15 @@
 class PagesController < ApplicationController
   skip_before_action :require_login
 
+  def index
+    @randon_feedbacks = Feedback.published.random
+    render template: "pages/home"
+  end
+
   def show
     if valid_page?
-      @collaborators = Collaborator.all
       @randon_feedbacks = Feedback.published.random
+      @collaborators = Collaborator.all
       @categories = Category.all
       render template: "pages/#{params[:page]}"
     else

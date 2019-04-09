@@ -8,17 +8,16 @@ class CustomersController < ApplicationController
   end
 
   def show
-    authorize! :read, Customer
+    authorize! :read, @customer
   end
 
   def new
     @customer = Customer.new
-    authorize! :create, Customer
+    authorize! :create, @customer
   end
 
   def edit
-    @customer = Customer.find(params[:id])
-    authorize! :edit, @customer
+    authorize! :update, @customer
   end
 
   def update
@@ -37,8 +36,8 @@ class CustomersController < ApplicationController
   end
 
   def create
-    authorize! :create, @customer
       @customer = Customer.new(customer_params)
+      authorize! :create, Customer
         if @customer.save
       redirect_to customers_path , notice: "Customer is created."
     else

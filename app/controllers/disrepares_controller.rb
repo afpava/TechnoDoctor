@@ -4,6 +4,7 @@ class DisreparesController < ApplicationController
 
   def index
     @disrepares = @category.disrepares.all
+    authorize! :read, Disrepare
   end
 
   def new
@@ -12,7 +13,7 @@ class DisreparesController < ApplicationController
 
   def create
     @disrepare = @category.disrepares.create(disrepare_params)
-
+      authorize! :create, @disrepare
     if @disrepare.save
       redirect_to category_path(@category), notice: 'Disrepare was successfully created.'
     else
@@ -21,6 +22,7 @@ class DisreparesController < ApplicationController
   end
 
   def update
+    authorize! :update, @disrepare
     if @disrepare.update(disrepare_params)
       redirect_to category_path(@category), notice: 'Disrepare was successfully updated.'
     else
@@ -29,6 +31,7 @@ class DisreparesController < ApplicationController
   end
 
   def destroy
+    authorize! :destroy, @disrepare
     @disrepare.destroy
     redirect_to category_path(@category), notice: 'Disrepare was successfully destroyed.'
   end

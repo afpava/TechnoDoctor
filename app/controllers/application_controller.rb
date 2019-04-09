@@ -9,6 +9,7 @@ class ApplicationController < ActionController::Base
   end
   rescue_from Pagy::OverflowError, with: :redirect_to_last_page
 
+  helper_method :current_user
   private
 
   def require_login
@@ -26,6 +27,5 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  helper_method :current_user
 
 end

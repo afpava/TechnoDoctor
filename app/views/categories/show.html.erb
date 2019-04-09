@@ -33,7 +33,7 @@
             <%= render partial: 'shared/form', :locals => { main_parent: nil ,parent: @category, pl_text: "Operation", children: @category.operations.build, extra_text: "price" } %>
         <% end %>
             <h3><%= 'Operations:' if @category.operations.any? %></h3>
-            <%= render partial: 'shared/list', :locals => { elements: @category.operations.reload, main_parent: nil , parent: @category, obj: "operation"} %>
+            <%= render partial: 'operations/list_price', :locals => { elements: @category.operations.reload, main_parent: nil , parent: @category, obj: "operation"} %>
 
           </div>
 

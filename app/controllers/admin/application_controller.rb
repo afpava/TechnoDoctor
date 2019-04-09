@@ -10,10 +10,10 @@ module Admin
 
     def authenticate_admin
       # TODO Add authentication logic here.
-      # binding.pry
-      # current_policy&.admin?
+      @current_user ||= User.find(session[:user_id]) if session[:user_id]
+      redirect_back(fallback_location: root_path,
+            alert: 'You are not admin.') if !@current_user&.admin?
     end
-
 
     # Override this value to specify the number of elements to display at a time
     # on index pages. Defaults to 20.

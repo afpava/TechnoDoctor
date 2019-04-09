@@ -14,4 +14,6 @@
 //= require activestorage
 //= require jquery3
 //= require bootstrap-sprockets
+
+//= require selectize
 //= require_tree .

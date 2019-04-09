@@ -14,7 +14,7 @@ class PartsController < ApplicationController
 
   def new
       @part = Part.new
-      authorize! :create, Part
+      authorize! :create, @part
   end
 
   def edit

@@ -1,0 +1,68 @@
+<%= render partial: '/pages/header', :locals => { text: "Devices" } %>
+
+<% if can? :create, Customer %>
+<%= link_to 'New Device', new_device_path, :class=>'btn btn-default pull-right' %>
+<% end %>
+<% if can? :create, Ticket %>
+<%= link_to 'New Customer', customers_path, :class=>'btn btn-default' %>
+<% end %>
+<div class="section-space">
+  <!-- main container -->
+  <div class="row">
+    <div class="container">
+      <div class="table-responsive">
+        <table class='table table-bordred table-striped'>
+          <tr align="center">
+            <th>Number</th>
+            <th>Model</th>
+            <th>s/n</th>
+            <th>imei</th>
+            <th>Ticket num.</th>
+            <th>Edit</th>
+            <th>Delete</th>
+          </tr>
+          <% @devices.each do | device | %>
+            <tr align="center">
+              <td>
+                <%=link_to device.id, device %>
+              </td>
+              <td>
+                <%= device.model.description %>
+              </td>
+              <td>
+                <%= device.serial_num %>
+              </td>
+
+              <td>
+                <%= device.imei %>
+              </td>
+
+              <td>
+                <%= device.ticket_ids.join(', ') %>
+              </td>
+
+              <td>
+              <% if can? :update, device %>
+                  <%= link_to edit_polymorphic_path(device), :class=>'btn btn-default' do %>
+                  <i class="fa fa-pencil"></i>
+                <% end %>
+              </td>
+            <% end %>
+            <td>
+              <% if can? :destroy, device %>
+                <%= link_to (device), :class=>'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?' } do %>
+                <i class="fa fa-trash"></i>
+              <% end %>
+            <% end %>
+          </td>
+        </tr>
+
+      <% end %>
+    </table>
+
+  </div>
+  <%== pagy_bootstrap_nav(@pagy) if current_page?(action: 'index') if @pagy.pages > 1 %>
+</div>
+
+  </div>
+</div>

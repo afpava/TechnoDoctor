@@ -25,9 +25,9 @@ class AccessPolicy
       can :manage, Operation
       can :manage, Feedback
       can :manage, Part
-      can :manage, Customer
       can :manage, Brand
       can :manage, Model
+      can :manage, Customer
     end
 
     # master

@@ -1,0 +1,39 @@
+<%#= link_to 'New category', categories_path(country_id: @country.id), method: :post, :class=>'btn btn-default' %>
+  <%= render partial: '/pages/header', :locals => { text: "Device: #{@device&.model&.description}" } %>
+  <div class="main-container">
+    <!-- main container -->
+    <div class="row">
+<div class="testimonial-inner">
+  <div class="col-md-4 col-sm-4">
+    <div class="well-bg">
+      <%= link_to customers_path , :class=>'btn btn-primary btn-sm' do %>
+        <i class="fa fa-undo"></i>
+      <% end %>
+
+      <div class="container">
+
+        <span class="testimonial-v2-meta">
+          <h4> Device card</h4>
+        </span>
+        <h3 class="testimonial-v3-name">
+          <%= @device.model.description %>
+        </h3>
+      </div>
+
+      <div class="well-inner">
+        <div class="testimonial-v3-caption"></br>
+        <%= content_tag(:strong, "Description: ")+ tag(:br) + @device&.model&.description + tag(:br) %>
+        <%= content_tag(:strong, "IMEI: ") + tag(:br) + @device&.imei + tag(:br) %>
+        <%= content_tag(:strong, "SERIAL: ") + tag(:br) + @device&.serial_num + tag(:br) %>
+        <%= content_tag(:strong, "Tickets: ") + tag(:br) + @device&.ticket_ids.join(',') + tag(:br) %>
+
+        <tr>
+          <td><%= link_to 'Edit', edit_device_path(@device), :class=>'btn btn-default' %></td>
+        </tr>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+</div>
