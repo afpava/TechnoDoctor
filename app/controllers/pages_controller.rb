@@ -2,7 +2,7 @@ class PagesController < ApplicationController
   skip_before_action :require_login
 
   def index
-    @randon_feedbacks = Feedback.published.random
+    @random_feedbacks = Feedback.published.random
     render template: "pages/home"
   end
 

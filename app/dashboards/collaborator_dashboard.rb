@@ -50,7 +50,7 @@ class CollaboratorDashboard < Administrate::BaseDashboard
     :first_name,
     :last_name,
     :nickname,
-    :ticket_id,
+    # :ticket_id,
     :avatar,
     :position,
     :created_at,
@@ -67,7 +67,7 @@ class CollaboratorDashboard < Administrate::BaseDashboard
     :last_name,
     :tickets,
     :position,
-    :ticket_id,
+    # :ticket_id,
   ].freeze
 
   # Overwrite this method to customize how collaborators are displayed

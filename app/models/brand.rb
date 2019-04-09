@@ -1,7 +1,7 @@
 class Brand < ApplicationRecord
   belongs_to :category
   has_many :models
-  has_many :devices
+  # has_many :devices
   validates :description, presence: true, uniqueness: { scope: :category,
 		message: "Brand exists!" }
 

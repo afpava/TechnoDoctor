@@ -13,7 +13,7 @@ class PartDashboard < Administrate::BaseDashboard
     description: Field::String,
     price: Field::Number.with_options(decimals: 2, prefix: "$",),
     quantity: Field::Number,
-    ticket_id: Field::Number,
+    # ticket_id: Field::Number,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
   }.freeze
@@ -38,7 +38,7 @@ class PartDashboard < Administrate::BaseDashboard
     :description,
     :price,
     :quantity,
-    :ticket_id,
+    # :ticket_id,
     :created_at,
     :updated_at,
   ].freeze
@@ -51,7 +51,7 @@ class PartDashboard < Administrate::BaseDashboard
     :description,
     :price,
     :quantity,
-    :ticket_id,
+    # :ticket_id,
   ].freeze
 
   # Overwrite this method to customize how parts are displayed

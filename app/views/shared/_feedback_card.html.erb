@@ -1,5 +1,5 @@
 <div class="testimonial-v3"><!-- testimonial -->
-<% @randon_feedbacks&.each do |feedback| %>
+<% @random_feedbacks&.each do |feedback| %>
   <div class="col-md-6 col-sm-12">
     <div class="well-bg">
       <div class="well-inner">
@@ -11,7 +11,7 @@
         <div class="testimonial-v3-img"><%= image_tag(feedback.user.avatar.url, alt: 'Avatar',
              style: 'height: 75px;') if feedback.user.avatar? %>
            </div>
-        <h3 class="testimonial-v3-name"><%= feedback.user.full_name%></h3>
+        <h3 class="testimonial-v3-name"><%= feedback&.user&.full_name%></h3>
         <span class="testimonial-v3-meta"><%= feedback.title.truncate(50, omission: "...") %></span> </div>
     </div>
   </div>

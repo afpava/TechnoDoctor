@@ -65,7 +65,7 @@ apple_list.each do |a|
 end
 
 10.times do
-	Device.create!(category_id: 1, brand_id: 1, model_id: rand(1..21), serial_num: Faker::Device.serial, imei: rand(111111111111111..999999999999999))
+	Device.create!(model_id: rand(1..21), serial_num: Faker::Device.serial, imei: rand(111111111111111..999999999999999))
 end
 
 operation_list = [

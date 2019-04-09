@@ -41,7 +41,7 @@ class CustomerDashboard < Administrate::BaseDashboard
     :first_name,
     :last_name,
     :phone_number,
-    :ticket_id,
+    # :ticket_id,
     :created_at,
     :updated_at,
   ].freeze

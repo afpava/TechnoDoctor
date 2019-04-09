@@ -11,11 +11,8 @@ class DeviceDashboard < Administrate::BaseDashboard
     tickets: Field::HasMany,
     model: Field::BelongsTo,
     id: Field::Number,
-    category_id: Field::Number,
-    brand_id: Field::Number,
     serial_num: Field::String,
     imei: Field::String,
-    ticket_id: Field::Number,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
   }.freeze
@@ -26,23 +23,17 @@ class DeviceDashboard < Administrate::BaseDashboard
   # By default, it's limited to four items to reduce clutter on index pages.
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = [
-    :tickets,
     :model,
     :id,
-    :category_id,
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = [
-    :tickets,
     :model,
     :id,
-    :category_id,
-    :brand_id,
     :serial_num,
     :imei,
-    :ticket_id,
     :created_at,
     :updated_at,
   ].freeze
@@ -51,13 +42,9 @@ class DeviceDashboard < Administrate::BaseDashboard
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = [
-    :tickets,
     :model,
-    :category_id,
-    :brand_id,
     :serial_num,
     :imei,
-    :ticket_id,
   ].freeze
 
   # Overwrite this method to customize how devices are displayed
