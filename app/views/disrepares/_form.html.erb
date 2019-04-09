@@ -1,16 +1,6 @@
 <%= form_with(model: [@category, @disrepare], local: true) do |form| %>
-<% if @disrepare.errors.any? %>
-  <div id="error_explanation">
-    <h2><%= pluralize(@disrepare.errors.count, "error") %>
-      prohibited this disrepare from being saved:</h2>
+<%= render partial: '/shared/form_errors', :locals => { obj: @disrepare } %>
 
-    <ul>
-      <% @disrepare.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
-  </div>
-<% end %>
 
 <!-- Text input-->
 <div class="row column">

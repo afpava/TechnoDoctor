@@ -30,7 +30,6 @@ Rails.application.routes.draw do
 
   resources :sessions , except: [:edit, :update]
   resources :feedbacks
-  resources :customers
   resources :devices
   resources :contacts, only: [:new, :create]
 
@@ -41,8 +40,11 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :tickets do
-    resources :parts
+  resources :tickets, exept: [:new, :create]
+  resources :customers do
+      resources :tickets, only: [:new, :create] do
+        resources :parts
+      end
   end
 
   resources :categories do

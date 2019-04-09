@@ -1,15 +1,6 @@
 <%= form_with model: @contact, class:'contact-form', id: 'contactus',local: true  do |f| %>
-<% if @contact.errors.any? %>
-    <div id="error_explanation">
-      <h3><%= pluralize(@contact.errors.count, "error") %> prohibited this contact from being saved:</h2>
 
-      <ul>
-      <% @contact.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%= render partial: '/shared/form_errors', :locals => { obj: @contact } %>
 
   <div class="row">
     <!-- Text input-->

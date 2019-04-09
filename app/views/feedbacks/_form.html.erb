@@ -1,14 +1,7 @@
 <%= form_with model: @feedback, class: "feedbackform", local: true do |f| %>
-<% if @feedback.errors.any? %>
-  <div class="error_messages">
-    <h2>Form is invalid</h2>
-    <ul>
-      <% @feedback.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
-  </div>
-<% end %>
+
+<%= render partial: '/shared/form_errors', :locals => { obj: @feedback } %>
+
 <div class="row">
   <div class="col-md-6">
     <div class="form-group">

@@ -1,7 +1,4 @@
 class Customer < ApplicationRecord
-  # before_save :strip_phone_number
-# attr_accessor :full_name, :strip_phone_number
-
   # Setter for sanitizing phone number
   def phone_number=(phone)
     super(phone.delete('^0-9+'))

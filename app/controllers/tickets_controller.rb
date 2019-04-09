@@ -21,9 +21,14 @@ class TicketsController < ApplicationController
   end
 
   def new
+    @customer = Customer.find(params[:customer_id])
     # @passenger = Passenger.find(params[:passenger_id])
     @ticket = @customer.tickets.build
-    authorize! :create, @ticket
+    # binding.pry
+    @part = @ticket.parts.build
+    # @disrepares = @ticket.disrepares.build
+    # @operations = @ticket.operations.build
+    # authorize! :create, @ticket
   end
 
   def edit
@@ -127,9 +132,9 @@ class TicketsController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def ticket_params
     params.require(:ticket).permit(:orient_price, :prepayment, :stage, :in_date, :orient_date, :total_price,
-      parts_attributes: [ :id, :description, :price, :quantity, :ticket_id ],
-     operations_attributes: [ :id, :description, :price, :category_id ],
-     disrepares_attributes: [ :id, :description, :category_id ],
+      parts_attributes: [ :id, :description, :price, :quantity, :ticket_id, _destroy ],
+      disrepares_attributes: [ :id, :description, :category_id, _destroy ],
+     operations_attributes: [ :id, :description, :price, :category_id, _destroy ],
     )
   end
 

@@ -1,14 +1,6 @@
 <%= form_with model: @customer, local: true do |f| %>
-<% if @customer.errors.any? %>
-      <div class="error_messages">
-        <h2>Form is invalid</h2>
-        <ul>
-            <% @customer.errors.full_messages.each do |message| %>
-              <li><%= message %></li>
-            <% end %>
-        </ul>
-      </div>
-<% end %>
+<  <%= render partial: '/shared/form_errors', :locals => { obj: @customer } %>
+
 
     <div>
       <td><%= link_to customers_path, :class=>'btn btn-primary btn-sm' do %>

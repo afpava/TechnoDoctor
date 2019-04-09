@@ -1,0 +1,50 @@
+<%= render partial: '/pages/header', :locals => { text: "SignUp" } %>
+<div class="main-content">
+  <!-- main container -->
+  <div class="container content">
+    <div class="row">
+      <div class="col-md-6 pricing-block col-sm-12 col-md-offset-3">
+        <!-- pricing block -->
+
+        <div class="well-bg">
+          <div class="well-inner">
+<%= form_with model: [@customer, @ticket], local: true do |form| %>
+
+            <div style="padding-top: 10px;">
+              <%= form.text_field :category_id , class: 'input-block-level', placeholder: "category" %>
+            </div>
+
+            <div style="padding-top: 10px;">
+
+              <%= form.label :orient_price %>
+              <%= form.text_field :orient_price , class: 'input-block-level', placeholder: "category" %>
+            </div>
+
+            <div style="padding-top: 10px;">
+
+              <%= form.label :prepayment %>
+              <%= form.text_field :prepayment , class: 'input-block-level', placeholder: "category" %>
+            </div>
+
+            <%  form.fields_for :parts do |f| %>
+                <%= render partial: 'parts_fields', locals: {f: f} %>
+
+              <%#= render 'parts_fields', f: f %>
+              <%#= link_to_add_fields 'Add parts', f, :parts %>
+              <% end %>
+              <div class="container-fluid">
+                 <div class="actions">
+                      <%= form.submit  class: 'btn btn btn-default' %>
+                </div>
+              </div>
+
+
+            <%#= render 'form_nested' %>
+            <% end %>
+          </div>
+        </div>
+        <!-- /.pricing block -->
+      </div>
+    </div>
+  </div>
+</div>

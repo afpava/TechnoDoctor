@@ -1,14 +1,6 @@
 <%= form_with model: @device, local: true do |f| %>
-    <% if @device.errors.any? %>
-        <div class="error_messages">
-          <h2>Form is invalid</h2>
-          <ul>
-            <% @device.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-            <% end %>
-          </ul>
-        </div>
-    <% end %>
+<%= render partial: '/shared/form_errors', :locals => { obj: @device } %>
+
       <!-- <div class="form-group">
         Brand: <%#= f.select :brand_id,  @brand_arr, {}, { class: "selectize form-control brand ", id: "brands_ids" } %>
       </div> -->

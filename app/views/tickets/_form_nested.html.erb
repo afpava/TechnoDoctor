@@ -1,0 +1,104 @@
+<%= form_with model: [@customer, @ticket], local: true do |form| %>
+
+  <div class="container">
+    <div class="col-sm-12">
+      <div class="card card-default">
+        <div class="card-heading">
+        <%#= form.label :name %>
+        <div style="padding-top: 10px;">
+          category:  <%= form.text_field :category_id , class: 'input-block-level', placeholder: "category" %>
+        </div>
+
+
+          Model: <%#= form.select :model, options_for_select(@model_arr, @device&.model&.id) %>
+
+          <div class="form-group", style="padding-top: 10px;">
+          Collaborator: <%#= form.select :collaborator, options_for_select(@collab_arr,
+               @ticket&.collaborator&.id ), include_blank: true %>
+          </div>
+          <div class="form-group", style="padding-top: 10px;">
+            Stage: <%#= form.select :stage, options_for_select(@ticket_param, @ticket&.stage) %>
+          </div>
+          <div class="form-group", style="padding-top: 10px;">
+            Total Price:  <%#= form.text_field :total_price , class: 'input-block-level', placeholder: "total price" %>
+          </div>
+
+          <div class="form-group", style="padding-top: 10px;">
+            In Date:  <%#= form.date_field :in_date , class: 'input-block-level', placeholder: "in date" %>
+          </div>
+
+          <div class="form-group", style="padding-top: 10px;">
+            Disrepares: </br>
+            <ol>
+            <%#= collection_check_boxes(:disrepares, :disrepares_ids, @disrepares, :id, :description, checked: @ticket&.disrepares&.ids) do |b| %>
+            <li>
+              <%#= b.check_box %>
+               <%#= b.label %>
+            </li>
+          <%# end %>
+          </ol>
+          </div>
+
+          <div style="padding-top: 10px;">
+            Parts: </br>
+            <ol>
+            <%#= collection_check_boxes(:parts, :parts_ids, @parts, :id, :description, checked: @ticket&.parts&.ids) do |b| %>
+            <li>
+              <%#= b.check_box %>
+               <%#= b.label %>
+            </li>
+          <%# end %>
+
+          </ol>
+          </div>
+
+          <div style="padding-top: 10px;">
+            Operation: </br>
+            <ol>
+            <%#= collection_check_boxes(:operations, :operations_ids, @operations, :id, :description, checked: @ticket&.operations&.ids) do |b| %>
+              <li>
+                <%#= b.check_box %>
+                 <%#= b.label %>
+              </li>
+            <%# end %>
+          </ol>
+          </div>
+
+          <div style="padding-top: 10px;">
+            Customer: </br>
+            <ol>
+            <%#= collection_check_boxes(:customer, :customer_id, Customer.all, :id, :full_name, checked: @ticket.customer.id) %>
+           <%#= collection_radio_buttons(:ticket, :customer_id, @customers, :id, :full_name) do  |b| %>
+           <li>
+             <%#= b.radio_button %>
+              <%#= b.label %>
+           </li>
+           <%# end %>
+             </ol>
+          </div>
+
+        </div>
+
+      <div class="card-body">
+        <div class="col-md-9">
+
+        <%  form.fields_for :parts do |f| %>
+            <%= render partial: 'parts_fields', locals: {f: f} %>
+          <%#= render 'parts_fields', f: f %>
+          <%#= link_to_add_fields 'Add parts', f, :parts %>
+          <% end %>
+
+      </div>
+
+          </div>
+              <div class="container-fluid">
+                 <div class="actions">
+                      <%= form.submit  class: 'btn btn btn-default' %>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+</div>
+
+<% end %>

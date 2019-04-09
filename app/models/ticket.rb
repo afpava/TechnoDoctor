@@ -8,9 +8,11 @@ class Ticket < ApplicationRecord
   has_many :parts
 
   enum stage: [:accepted, :in_progress, :done, :taken]
-  accepts_nested_attributes_for :device, allow_destroy: true
-  accepts_nested_attributes_for :customer, allow_destroy: true
-  accepts_nested_attributes_for :collaborator, allow_destroy: true
+
+  accepts_nested_attributes_for :parts, allow_destroy: true, reject_if: :all_blank
+  accepts_nested_attributes_for :disrepares, allow_destroy: true, reject_if: :all_blank
+  accepts_nested_attributes_for :operations, allow_destroy: true, reject_if: :all_blank
+
 
   after_initialize do
       if self.new_record?

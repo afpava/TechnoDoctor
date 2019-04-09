@@ -1,16 +1,6 @@
 <%= form_with(model: [@category, @operation], local: true) do |form| %>
-<% if @operation.errors.any? %>
-  <div id="error_explanation">
-    <h2><%= pluralize(@operation.errors.count, "error") %>
-      prohibited this category from being saved:</h2>
+<%= render partial: '/shared/form_errors', :locals => { obj: @operation } %>
 
-    <ul>
-      <% @operation.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
-  </div>
-<% end %>
 
 <!-- Text input-->
 <div class="row column">

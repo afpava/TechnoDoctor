@@ -34,25 +34,25 @@
             <h4> User card</h4>
           </span>
           <h3 class="testimonial-v3-name">
-            <%= current_user.nickname %>
+            <%= current_user&.nickname %>
           </h3>
-          <span class="testimonial-v3-meta"><%= current_user.role.humanize %></span>
+          <span class="testimonial-v3-meta"><%= current_user&.role&.humanize %></span>
         </div>
 
         <div class="well-inner">
           <div class="testimonial-v3-caption"></br>
-          <%= content_tag(:strong, "First Name: ") + tag(:br) + current_user.first_name + tag(:br) if current_user.first_name? %>
-          <%= content_tag(:strong, "Nickname: ") + tag(:br) + current_user.nickname + tag(:br) if current_user.nickname? %>
-          <%= content_tag(:strong, "Last Name: ") + tag(:br) + current_user.last_name + tag(:br) if current_user.last_name? %>
-          <%= content_tag(:strong, "Email: ") + tag(:br) + current_user.email + tag(:br) if current_user.email? %>
+          <%= content_tag(:strong, "First Name: ") + tag(:br) + current_user&.first_name + tag(:br) if current_user&.first_name? %>
+          <%= content_tag(:strong, "Nickname: ") + tag(:br) + current_user.nickname + tag(:br) if current_user&.nickname? %>
+          <%= content_tag(:strong, "Last Name: ") + tag(:br) + current_user.last_name + tag(:br) if current_user&.last_name? %>
+          <%= content_tag(:strong, "Email: ") + tag(:br) + current_user.email + tag(:br) if current_user&.email? %>
           <%= content_tag(:strong, "Feedbacks: ") + tag(:br) +
                        link_to( "#{total_feedbacks} / #{published_feedbacks}",
                           feedbacks_path, title: "feedbacks/published") + tag(:br)  %>
           <td><%= link_to 'Edit', edit_user_path(@user), :class=>'btn btn-default' %></td>
           <hr>
           <% if current_user&.customer? %>
-          <%= content_tag(:strong, "Customer: ") + tag(:br) + current_user.customer.full_name + tag(:br) if current_user.customer? %>
-          <%= content_tag(:strong, "phone_number: ") + tag(:br) + current_user.customer.phone_number + tag(:br) if current_user.customer? %>
+          <%= content_tag(:strong, "Customer: ") + tag(:br) + current_user&.customer&.full_name + tag(:br) if current_user&.customer? %>
+          <%= content_tag(:strong, "phone_number: ") + tag(:br) + current_user&.customer&.phone_number + tag(:br) if current_user&.customer? %>
 
           <tr>
             <%= button_tag class:"btn btn-defauilt", data: {target: "#Customerize",  toggle: "modal"} do content_tag(:i,' Find repares',class:"fa fa-book") end %>
