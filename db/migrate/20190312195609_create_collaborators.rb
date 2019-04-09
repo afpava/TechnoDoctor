@@ -7,7 +7,6 @@ class CreateCollaborators < ActiveRecord::Migration[5.2]
       t.string :avatar
       t.integer :user_id
       t.integer :position, default: 0, null: false
-      t.references :ticket, foreign_key:true
 
       t.timestamps
     end
