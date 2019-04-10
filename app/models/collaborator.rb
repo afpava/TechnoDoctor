@@ -3,6 +3,9 @@ class Collaborator < ApplicationRecord
   belongs_to :user
 
   enum position: [:account_reciveble, :technical_support, :service_manager, :owner]
+  validates :first_name, presence: true
+  validates :last_name, presence: true
+  validates :nickname, uniqueness: true
 
 
   require 'carrierwave'

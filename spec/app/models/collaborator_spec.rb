@@ -3,14 +3,41 @@ require 'rails_helper'
 RSpec.describe Collaborator, type: :model do
 
 #  context "validation tests" do
+let(:user) { User.create(email: 'test@test.com', nickname: 'Test', first_name: 'First', last_name: 'Super', birth_day: '01-01-1900', password:'123test' ) }
 
 context "validate default position" do
-      let(:user) {Collaborator.create(nickname: 'Test', first_name: 'First', last_name: 'Super')}
+  let(:collaborator) {Collaborator.create(first_name: 'testUser', last_name:'testUser', nickname:'Dublicator', user_id: user.id )}
     it "ensures default position is account_reciveble" do
-      expect(user.position).to eq ("account_reciveble")
+      expect(collaborator.position).to eq ("account_reciveble")
     end
 end
 
+context "validate nickname uniqueness" do
+    let(:collaborator1) {Collaborator.create(first_name: 'testUser', last_name:'testUser', nickname:'Dublicator', user_id: user.id )}
+    let(:collaborator2) {Collaborator.create(first_name: 'testUser', last_name:'testUser', nickname:'Dublicator', user_id: user.id )}
+  it "ensures nickname uniqueness" do
+    expect(collaborator1).to be_valid
+    expect(collaborator2).to be_invalid
+  end
+end
+
+context "validate first_name presence" do
+    let(:collaborator1) {Collaborator.create(first_name: 'testUser', last_name:'testUser', nickname:'Dublicator', user_id: user.id )}
+    let(:collaborator2) {Collaborator.create(first_name: nil , last_name:'testUser', nickname:'Dublicator', user_id: user.id )}
+  it "ensures first_name present" do
+    expect(collaborator1).to be_valid
+    expect(collaborator2).to be_invalid
+  end
+end
+
+context "validate last_name presence" do
+    let(:collaborator1) {Collaborator.create(first_name: 'testUser', last_name:'testUser', nickname:'Dublicator', user_id: user.id )}
+    let(:collaborator2) {Collaborator.create(first_name: 'testUser', last_name: nil, nickname:'Dublicator', user_id: user.id )}
+  it "ensures nickname uniqueness" do
+    expect(collaborator1).to be_valid
+    expect(collaborator2).to be_invalid
+  end
+end
 #  end #validations
 
   describe "#full_name" do

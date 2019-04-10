@@ -35,15 +35,12 @@ class TicketsController < ApplicationController
     @model_arr = Model.pluck(:description, :id)
     @collab_arr = Collaborator.pluck(:nickname, :id)
     @ticket_param = Ticket.stages.keys
-      # binding.pry
     # if params[:category_id]
     #   @category = Category.find(params[:category_id])
     # else
     #   @category = Category.find(1)
     # end
-
     @disrepares = Disrepare.all
-
     @parts = @ticket.parts
     @customers = Customer.all
     @operations = Operation.all
@@ -65,7 +62,6 @@ class TicketsController < ApplicationController
 
   def update
     if @ticket.update(ticket_params)
-      # binding.pry
         # if params[:ticket][:collaborator].present?
         #   collaborator = Collaborator.find(params[:ticket][:collaborator])
         #   collaborator.tickets << @ticket

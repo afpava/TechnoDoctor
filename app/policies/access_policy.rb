@@ -15,7 +15,7 @@ class AccessPolicy
     # The most important role should be at the top.
     # In this case an administrator.
     #
-    role :admin, proc { |user| user.admin? } do
+    role :admin, proc { |user| user&.admin? } do
       can :manage, User
       can :manage, Ticket
       can :manage, Collaborator
@@ -31,7 +31,7 @@ class AccessPolicy
     end
 
     # master
-    role :master, proc { |user| user.master? } do
+    role :master, proc { |user| user&.master? } do
       can :manage, Ticket
       can [:read, :create, :update], Part
       can [:read, :create, :update], Category
@@ -45,7 +45,7 @@ class AccessPolicy
     end
 
     # Reception
-    role :reception, proc { |user| user.reception? } do
+    role :reception, proc { |user| user&.reception? } do
       can [:read, :create, :update], Device
       can [:read, :create, :update], Customer
       can [:read, :create, :update], Ticket
@@ -58,7 +58,7 @@ class AccessPolicy
     end
 
     # More privileged role, applies to registered users.
-    role :customer, proc { |user| user.customer? } do
+    role :customer, proc { |user| user&.customer? } do
       can :create, Feedback
       can [:update, :destroy], Feedback do |feedback, current_user|
         feedback.user == current_user

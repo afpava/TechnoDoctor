@@ -56,61 +56,6 @@ RSpec.describe BrandsController, type: :controller do
 
   end #brand #create
 
-  describe 'PATCH#complete' do
-    let(:brand_params){brand_params = {title:"This is test#{rand(1000)}", text:'Test message'}}
-    let(:brand1) {person1.brands.create(brand_params)}
-      before do
-        allow(controller).to receive(:current_user) {person1}
-        person1
-        user
-        brand1
-
-      end
-
-
-      context 'as a user' do
-
-        context 'with valid params' do
-          let(:brand_ch_params) { brand_ch_params ={completed: true} }
-
-          it 'updates requested record completed: true' do
-            # subject
-            patch :complete, params: {category_id: brand1.category.id, id: person1.id, completed: true }
-            expect(brand1.reload.completed).to eq(brand_ch_params[:completed])
-            expect(response).to redirect_to(root_path)
-            expect(flash[:notice]).to eq 'Todo item completed'
-
-          end
-
-          it 'updates requested record completed: false' do
-            # subject
-            patch :complete, params: {category_id: brand1.category.id, id: person1.id, completed: false }
-            expect(brand1.reload.completed).to eq false
-            expect(response).to redirect_to(root_path)
-            expect(flash[:notice]).to eq 'Todo item unchecked'
-
-          end
-
-
-        end
-      #
-      #   context 'with invalid params' do
-      #     let(:brand_ch_params) {brand_params = {title: nil, text: nil } }
-      #
-      #     it do
-      #        subject
-      #        expect(response).to render_template(:edit)
-      #      end
-      #   end
-      #
-      end
-
-
-    end #PATCH complete
-
-
-
-
   describe 'PATCH#update' do
     let(:brand_params){brand_params = {title:"This is test#{rand(1000)}", text:'Test message'}}
     let(:brand1) {person1.brands.create(brand_params)}

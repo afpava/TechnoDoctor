@@ -20,7 +20,7 @@ class Customer < ApplicationRecord
 
 
   def full_name
-    [self.first_name, self.last_name].join(" ") if !self.first_name.blank? && !self.last_name.blank?
+    [self.first_name, self.last_name].join(" ")
   end
 
   def strip_phone_number

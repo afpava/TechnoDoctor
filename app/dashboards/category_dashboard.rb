@@ -35,7 +35,7 @@ class CategoryDashboard < Administrate::BaseDashboard
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = [
-    :devices,
+    # :devices,
     :brands,
     :disrepares,
     :operations,
@@ -49,7 +49,7 @@ class CategoryDashboard < Administrate::BaseDashboard
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = [
-    :devices,
+    # :devices,
     :brands,
     :disrepares,
     :operations,

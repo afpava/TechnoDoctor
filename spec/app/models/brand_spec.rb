@@ -18,6 +18,11 @@ RSpec.describe Brand, type: :model do
     expect(brand2).to be_valid
   end
 
+  it "applies a default scope to collections by category" do
+   expect(Brand.by_category(1).to_sql).to eq Brand.where(category: 1).to_sql
+ end
+
+
 
   end #Validations
 

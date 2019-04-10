@@ -1,95 +1,46 @@
 require 'rails_helper'
 
 RSpec.describe Customer, type: :model do
-
+let(:user) {User.create(email: 'test@test.com', password:'123test' )}
+let(:customer_valid) {Customer.create(first_name: 'test', last_name:'123test', phone_number:'1234567', user_id: user.id  )}
 #  context "validation tests" do
 
-  context "Validation email presence" do
-    let(:user) {User.create(email: '', password:'123test' )}
-    it "ensures email presence" do
-      expect(user).to be_invalid
+  context "Validation first_name presence" do
+    let(:customer) {Customer.create(first_name: '', last_name:'123test', phone_number:'1234567', user_id: user.id  )}
+    it "ensures first_name presence" do
+      expect(customer).to be_invalid
     end
   end
 
-  context "validate emai patterns" do
-    let(:user) {User.create(email: 'test@test', password:'123test' )}
-    it "ensures email pattern" do
-      expect(user).to be_invalid
+  context "validate phone_number presence" do
+    let(:customer) {Customer.create(first_name: '123test', phone_number:'1234567', user_id: user.id  )}
+    let(:customer_bl) {Customer.create(first_name: '123test2', phone_number:'', user_id: user.id  )}
+    it "ensures last_name presence" do
+      expect(customer).to be_valid
+      expect(customer_bl).to be_invalid
     end
   end
 
-  context "validate email creation" do
-    let(:user) {User.create(email: 'test@test.com', password:'123test' )}
-    it "ensures email created" do
-      expect(user).to be_valid
+  context "validate phone_number uniqueness" do
+    let(:customer) {Customer.create(first_name: '123test', phone_number:'1234567', user_id: user.id  )}
+    let(:customer_bl) {Customer.create(first_name: '123test2', phone_number:'1234567', user_id: user.id  )}
+    it "ensures customer created" do
+      expect(customer).to be_valid
+      expect(customer_bl).to be_invalid
     end
   end
 
-  context "validate emai uniqueness" do
-      let(:user1) {User.create(email: 'test@test.com', password:'123test' )}
-      let(:user2) {User.create(email: 'test@test.com', password:'123test' )}
-    it "ensures email uniqueness" do
-      expect(user1).to be_valid
-      expect(user2).to be_invalid
-    end
-  end
-
-  context "validate email patterns" do
-      let(:user) {User.create(email: 'test@test.com', password:'')}
-    it "ensures password can't be blank" do
-      expect(user).to be_invalid
-    end
-  end
-
-  context "validate password" do
-      let(:user) {User.create(email: 'test@test.com', password:'123456')}
-    it "ensures password patterns must contain letters on create" do
-      expect(user).to be_invalid
-    end
-end
-
-  context "validate password" do
-      let(:user) {User.create(email: 'test@test.com', password:'qwertyui')}
-    it "ensures password must contain digits on create" do
-      expect(user).to be_invalid
-    end
-  end
-
-context "validate password" do
-      let(:user) {User.create(email: 'test@test.com', password:'1qwer')}
-    it "ensures password length 6 symbols min on create" do
-      expect(user).to be_invalid
-    end
-  end
-
-context "validate password" do
-      let(:user) {User.create(email: 'test@test.com', password:'123456789qwer')}
-    it "ensures password length 10 symbols max on create" do
-      expect(user).to be_invalid
-    end
-end
-
-context "validate password" do
-      let(:user) {User.create(email: 'test@test.com', password:'123test')}
-    it "ensures password length 6-10 symbols on create" do
-      expect(user).to be_valid
-    end
-end
-
-context "validate default role" do
-      let(:user) {User.create(email: 'test@test.com', password:'123test')}
-    it "ensures default role is customer" do
-      expect(user.role).to eq ("customer")
-    end
-end
+  it "applies a default scope to collections by category" do
+   expect(Customer.init_customer("12345678","123").to_sql).to eq Customer.where(phone_number:"12345678").joins(:tickets).where("tickets.id = ?", "123").to_sql
+ end
 
 #  end #validations
 
   describe "#full_name" do
 
-      let(:user) { User.create(email: 'test@test.com', nickname: 'Test', first_name: 'First', last_name: 'Super', birth_day: '01-01-1900', password:'123test' ) }
-      let(:blank_first) { User.create(email: 'admin@test.com', nickname: 'Blank', first_name: '', last_name: 'Super', password:'123test' ) }
-      let(:blank_last) { User.create(email: 'admin2@test.com', nickname: 'Blank', first_name: 'Super', last_name: '', password:'123test' ) }
+      let(:user) { Customer.create(first_name: 'First', last_name: 'Super', phone_number:'1234567') }
+      let(:blank_first) { Customer.create(first_name: '', last_name: 'Super', phone_number:'1234568' ) }
+      let(:blank_last) { Customer.create(first_name: 'Super', last_name: '' , phone_number:'1234569') }
 
     it "should return full_name on fist_name and last_name presence" do
       expect(user.full_name).to eq (user.first_name + " " + user.last_name)
@@ -105,5 +56,15 @@ end
 
 
   end #fill_name
+
+
+    describe "#strip_phone_number" do
+
+      let(:customer_wrong_number) { Customer.create(first_name: 'Super', last_name: '' , phone_number:'+12 34-569F') }
+      it "should return full_name on fist_name and last_name presence" do
+        expect(customer_wrong_number.strip_phone_number).to eq ("1234569")
+      end
+
+    end #strip_phone_number
 
 end #User model

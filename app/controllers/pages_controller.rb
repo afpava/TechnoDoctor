@@ -8,7 +8,7 @@ class PagesController < ApplicationController
 
   def show
     if valid_page?
-      @randon_feedbacks = Feedback.published.random
+      @random_feedbacks = Feedback.published.random
       @collaborators = Collaborator.all
       @categories = Category.all
       render template: "pages/#{params[:page]}"
