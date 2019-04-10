@@ -1,7 +1,6 @@
 class FeedbacksController < ApplicationController
 
     before_action :set_feedback, only: [ :destroy, :edit, :update]
-    #before_action :authorize, only: [:edit, :update, :destroy]
     def index
       @feedbacks = current_user.feedbacks
     end

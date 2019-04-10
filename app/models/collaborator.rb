@@ -1,5 +1,6 @@
 class Collaborator < ApplicationRecord
   has_many :tickets
+  belongs_to :user
 
   enum position: [:account_reciveble, :technical_support, :service_manager, :owner]
 

@@ -1,9 +1,9 @@
 class PartsController < ApplicationController
 
   before_action :set_part, only: [:show, :edit, :update, :destroy]
-  #before_action :authorize, only: [:edit, :update, :destroy]
+
   def index
-    @parts = Part.all
+    @pagy ,@parts = pagy(Part.all, items: 5)
     authorize! :read, Part
   end
 
@@ -13,8 +13,9 @@ class PartsController < ApplicationController
   end
 
   def new
-      @part = Part.new
-      authorize! :create, @part
+      @ticket = Ticket.find(params[:ticket_id])
+      @part = @ticket.parts.build
+      # authorize! :create, @part
   end
 
   def edit
@@ -23,19 +24,19 @@ class PartsController < ApplicationController
 
   def create
     @part = Part.new(part_params)
-    authorize! :create, @part
+    # authorize! :create, @part
 
     if @part.save
-      redirect_to root_url, notice: 'Part was successfully created.'
+      redirect_to ticket_path(@part.ticket), notice: 'Part was successfully created.'
     else
-      render :new
+      redirect_to ticket_path(@part.ticket), alert: 'Part was not created.'
     end
   end
 
   def update
     authorize! :update, @part
     if @part.update(category_params)
-      redirect_to root_url, notice: 'Part was successfully updated.'
+      redirect_to ticket_path(@part), notice: 'Part was successfully updated.'
     else
       render :edit
     end
@@ -44,19 +45,19 @@ class PartsController < ApplicationController
   def destroy
     authorize! :destroy, @part
     @part.destroy
-    redirect_to countries_url, notice: 'Part was successfully destroyed.'
+    redirect_to ticket_path(@part), notice: 'Part was successfully destroyed.'
   end
 
 
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_part
-    @category = Part.find(params[:id])
+    @part = Part.find(params[:id])
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def part_params
-    params.require(:part).permit(:description)
+    params.require(:part).permit(:description, :ticket_id, :price,:quantity)
   end
 
 end

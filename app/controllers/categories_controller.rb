@@ -39,8 +39,13 @@ class CategoriesController < ApplicationController
 
   def destroy
     authorize! :destroy, @category
-    @category.destroy
-    redirect_back(fallback_location: categories_path, notice: 'Category was successfully destroyed.')
+    begin
+        @category.destroy
+        redirect_back(fallback_location: categories_path, notice: 'Category was successfully destroyed.')
+    rescue
+        redirect_back(fallback_location: categories_path, notice: 'Category is linked!.')
+    end
+
   end
 
 

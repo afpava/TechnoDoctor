@@ -28,37 +28,37 @@ Rails.application.routes.draw do
   # resources :customers do
       get '/pages/:page' => 'pages#show'
 
-  resources :sessions , except: [:edit, :update]
-  resources :feedbacks
+  resources :sessions , only: [:create, :show, :index, :destroy]
+  resources :feedbacks, only:  [:new, :create, :edit, :show, :index, :update, :destroy]
   resources :devices
   resources :contacts, only: [:new, :create]
 
   resources :users do
-    resources :feedbacks, except: [:show, :index, :new, :create]
+    resources :feedbacks, only: [:new, :create]
     member do
        patch :customerize
     end
   end
 
-  resources :tickets, exept: [:new, :create]
+  resources :tickets, only:  [:create, :show, :index, :edit, :update, :destroy] do
+    resources :parts, only:  [:create, :destroy]
+  end
   resources :customers do
-      resources :tickets, only: [:new, :create] do
-        resources :parts
-      end
+      resources :tickets, only: [:new, :create]
   end
 
   resources :categories do
     resources :brands do
-      resources :models, exept: [:show]
+      resources :models, only: [:index, :new, :edit, :update, :destroy, :create]
     end
   end
 
   resources :categories do
-    resources :operations, exept: [:show]
+    resources :operations, only: [:index, :new, :edit, :update, :destroy, :create]
   end
 
   resources :categories do
-    resources :disrepares, exept: [:show]
+    resources :disrepares, only: [:index, :new, :edit, :update, :destroy, :create]
   end
 
 root 'pages#index'

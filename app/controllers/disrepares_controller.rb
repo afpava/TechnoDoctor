@@ -32,8 +32,12 @@ class DisreparesController < ApplicationController
 
   def destroy
     authorize! :destroy, @disrepare
-    @disrepare.destroy
-    redirect_to category_path(@category), notice: 'Disrepare was successfully destroyed.'
+    begin
+      @disrepare.destroy
+      redirect_to category_path(@category), notice: 'Disrepare was successfully destroyed.'
+    rescue
+      redirect_to category_path(@category), alert: 'Disrepare linked!.'
+    end
   end
 
 

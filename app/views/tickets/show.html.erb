@@ -23,18 +23,18 @@
 
         </tr>
         <tr align="center"><td><%= @ticket.id %> </td>
-            <td> <%= @device.model.description %> </td>
-            <td> <%= @customer.full_name %> </td>
-            <td> <%= @ticket.stage.humanize %> </td>
+            <td> <%= @device&.model&.description %> </td>
+            <td> <%= @customer&.full_name %> </td>
+            <td> <%= @ticket&.stage.humanize %> </td>
 
-            <td> <%= number_to_currency(@ticket.orient_price) %> </td>
-            <td> <%= number_to_currency(@ticket.prepayment) %> </td>
-            <td> <%= number_to_currency(@ticket.total_price) %> </td>
-            <td> <%= number_to_currency(@ticket.pay_price) %> </td>
+            <td> <%= number_to_currency(@ticket&.orient_price) %> </td>
+            <td> <%= number_to_currency(@ticket&.prepayment) %> </td>
+            <td> <%= number_to_currency(@ticket&.total_price) %> </td>
+            <td> <%= number_to_currency(@ticket&.pay_price) %> </td>
 
-            <td> <%= @collaborator.nickname.to_s if @collaborator.present?  %> </td>
+            <td> <%= @collaborator&.nickname.to_s if @collaborator.present?  %> </td>
             <% select_tag 'nickname', options_for_select(@collaborators.collect{ |u| [u.nickname, u.id] }) %>
-            <td> <%= @device.imei if @device.imei.present? %> </td>
+            <td> <%= @device.imei if @device&.imei.present? %> </td>
             <td><% @disrepares.each do |d| %>
             <%=  d.description %> <p/>
             <% end %></td>
@@ -47,9 +47,19 @@
             <td> <%= number_to_currency(@ticket.earned_money) %> </td>
             <td> <%= @ticket.orient_date %> </td>
         </tr>
-  </table>
-  <%= link_to 'Back', tickets_path, :class=>'btn btn-default'%>
-  <%= link_to 'Edit', edit_ticket_path, :class=>'btn btn-default pull-right'%>
+    </table>
+    <%= link_to 'Back', tickets_path, :class=>'btn btn-default'%>
+    <%= link_to 'Edit', edit_ticket_path, :class=>'btn btn-default pull-right'%>
+  </div>
 </div>
+  <div class="row">
+    <div class="col-md-6 pricing-block col-sm-12 col-md-offset-3">
+      <div class="well-bg">
+        <div class="well-inner">
+          <%= render partial: 'parts/form', :locals => { ticket: @ticket, parts: @ticket.parts.build } %>
+        </div>
+      </div>
+  </div>
 </div>
+
 </div>

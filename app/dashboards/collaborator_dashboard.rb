@@ -13,7 +13,7 @@ class CollaboratorDashboard < Administrate::BaseDashboard
     first_name: Field::String,
     last_name: Field::String,
     nickname: Field::String,
-
+    user: Field::BelongsTo,
     avatar: Field::Carrierwave.with_options(
               image: :standard,
               multiple: false,
@@ -39,6 +39,7 @@ class CollaboratorDashboard < Administrate::BaseDashboard
     :first_name,
     :last_name,
     :avatar,
+    :user,
     :position,
   ].freeze
 
@@ -52,6 +53,7 @@ class CollaboratorDashboard < Administrate::BaseDashboard
     :nickname,
     # :ticket_id,
     :avatar,
+    :user,
     :position,
     :created_at,
     :updated_at,
@@ -66,6 +68,7 @@ class CollaboratorDashboard < Administrate::BaseDashboard
     :first_name,
     :last_name,
     :tickets,
+    :user,
     :position,
     # :ticket_id,
   ].freeze

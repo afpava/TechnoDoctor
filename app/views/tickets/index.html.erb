@@ -1,8 +1,5 @@
 <%= render partial: 'pages/header', :locals => { text: "Tickets list" } %>
 
-<% if can? :create, Ticket %>
-<%= link_to 'New ticket', new_ticket_path, :class=>'btn btn-default' %>
-<% end %>
 <div class="section-space"><!-- main container -->
   <div class="row">
       <div class="table-responsive">

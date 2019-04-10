@@ -3,37 +3,53 @@
   <div class="main-container">
     <!-- main container -->
     <div class="row">
-<div class="testimonial-inner">
-  <div class="col-md-4 col-sm-4">
-    <div class="well-bg">
-      <%= link_to customers_path , :class=>'btn btn-primary btn-sm' do %>
-        <i class="fa fa-undo"></i>
-      <% end %>
+      <div class="col-md-9 col-sm-9">
+        <% if can? :create, Ticket %>
+          <%= link_to 'New ticket', new_customer_ticket_path(@customer), :class=>'btn btn-default' %>
+        <% end %>
+        <!-- pricing block -->
+        <div class="container">
+          <div class="row">
+            <div class="table-responsive-md">
+              <div class="col-md-10 col-sm-10">
+                <%= render partial: 'shared/ticket', :locals => { tickets: @customer.tickets } %>
+              </div>
+            </div>
+            <!-- /.pricing block -->
+          </div>
+        </div>
 
-      <div class="container">
+    </div>
 
-        <span class="testimonial-v2-meta">
-          <h4> Customer card</h4>
-        </span>
-        <h3 class="testimonial-v3-name">
-          <%= @customer.full_name %>
-        </h3>
-      </div>
+    <%= link_to customers_path , :class=>'btn btn-primary btn-sm' do %>
+    <i class="fa fa-undo"></i>
+    <% end %>
+    <div class="col-md-3 col-sm-3">
+        <div class="well-bg">
+          <div class="well-inner">
+            <div class="testimonial-v3-caption"></br>
+            <span class="testimonial-v2-meta">
+              <div class="row">
+              <h4>
+                Customer card</h4>
+            </span>
+            <h3 class="testimonial-v3-name">
+              <%= @customer.full_name %>
+            </h3>
 
-      <div class="well-inner">
-        <div class="testimonial-v3-caption"></br>
-        <%= content_tag(:strong, "First Name: ")+ tag(:br) + @customer&.first_name + tag(:br) %>
-        <%= content_tag(:strong, "Full Name: ") + tag(:br) + @customer&.full_name + tag(:br) %>
-        <%= content_tag(:strong, "Last Name: ") + tag(:br) + @customer.last_name + tag(:br) %>
-        <%= content_tag(:strong, "Phone number: ") + tag(:br) + @customer.phone_number + tag(:br) %>
+            <%= content_tag(:strong, "First Name: ")+ tag(:br) + @customer&.first_name + tag(:br) %>
+            <%= content_tag(:strong, "Full Name: ") + tag(:br) + @customer&.full_name + tag(:br) %>
+            <%= content_tag(:strong, "Last Name: ") + tag(:br) + @customer.last_name + tag(:br) %>
+            <%= content_tag(:strong, "Phone number: ") + tag(:br) + @customer.phone_number + tag(:br) %>
 
-        <tr>
-          <td><%= link_to 'Edit', edit_customer_path(@customer), :class=>'btn btn-default' %></td>
-        </tr>
+            <tr>
+              <td><%= link_to 'Edit', edit_customer_path(@customer), :class=>'btn btn-default' %></td>
+            </tr>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
+    </div>
 </div>
 </div>
 </div>

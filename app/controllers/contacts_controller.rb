@@ -11,7 +11,6 @@ class ContactsController < ApplicationController
 
       redirect_to root_path, notice: 'Mail was send'
     else
-      # binding.pry
       redirect_to contact_path, alert: 'Mail was not send'
 
     end

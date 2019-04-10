@@ -10,6 +10,7 @@ class UserDashboard < Administrate::BaseDashboard
   ATTRIBUTE_TYPES = {
     customer: Field::BelongsTo,
     feedbacks: Field::HasMany,
+    collaborator: Field::HasOne,
     id: Field::Number,
     email: Field::String,
     nickname: Field::String,
@@ -43,6 +44,7 @@ class UserDashboard < Administrate::BaseDashboard
     :email,
     :feedbacks,
     :customer,
+    :collaborator,
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES

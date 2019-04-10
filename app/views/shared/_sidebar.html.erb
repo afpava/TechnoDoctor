@@ -19,7 +19,6 @@
             <ul class="listnone long-arrow-right sidenav">
 
             <%= active_page("User index", users_path) %>
-            <%= active_page("Categories", categories_path)%>
             <%= active_page("Tickets", tickets_path) %>
 
 
@@ -30,8 +29,17 @@
               <span class="fa fa-fw fa-chevron-down"></span></a>
             <ul class="dropdown-menu listnone long-arrow-right sidenav">
 
+              <% if can? :create, Category %>
+                <%= active_page("Categories", categories_path)%>
+              <% end %>
+              <% if can? :read, Device %>
                 <%= active_page("Devices", devices_path) %>
+              <% end %>
+
+              <% if can? :read, Device %>
                 <%= active_page("Customers", customers_path)%>
+              <% end %>
+
               <li>
               </li>
               <li>

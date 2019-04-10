@@ -1,6 +1,6 @@
 class DevicesController < ApplicationController
   before_action :set_device, only: [:show, :edit, :update, :destroy]
-  before_action :set_relations, only: [:new, :edit]
+  before_action :set_relations, only: [:new, :create, :edit]
 
   def index
       @pagy, @devices = pagy(Device.all, items: 5)
@@ -38,8 +38,12 @@ class DevicesController < ApplicationController
 
   def destroy
     authorize! :destroy, @device
+    begin
     @device.destroy
-    redirect_back(fallback_location: devices_path, notice: 'Device was successfully destroyed.')
+      redirect_back(fallback_location: devices_path, notice: 'Device was successfully destroyed.')
+    rescue
+      redirect_back(fallback_location: devices_path, alert: 'Device is linked to ticket can not be destroyed.')
+    end
   end
 
 

@@ -45,8 +45,12 @@ class BrandsController < ApplicationController
 
   def destroy
     authorize! :destroy, @brand
-    @brand.destroy
-    redirect_to category_path(@category), notice: 'Brand was successfully destroyed.'
+    begin
+      @brand.destroy
+      redirect_to category_path(@category), notice: 'Brand was successfully destroyed.'
+    rescue
+      redirect_to category_path(@category), alert: 'Brand linked!.'
+    end
   end
 
 

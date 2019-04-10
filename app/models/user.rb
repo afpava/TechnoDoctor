@@ -1,6 +1,8 @@
 class User < ApplicationRecord
   belongs_to :customer, optional: true
   has_many :feedbacks
+  has_one :collaborator
+  
   attr_accessor :full_name, :age, :birthdays_this_month, :search_customer, :add_customer_relation
 
 

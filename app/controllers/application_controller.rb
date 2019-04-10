@@ -1,10 +1,8 @@
 class ApplicationController < ActionController::Base
   include Pagy::Backend
   before_action :require_login, except: [:new, :create]
-  # skip_before_action :require_login, only: [:new, :create]
 
   rescue_from "AccessGranted::AccessDenied" do |exception|
-    # binding.pry
     redirect_to root_path, alert: "You don't have permission to access this page."
   end
   rescue_from Pagy::OverflowError, with: :redirect_to_last_page

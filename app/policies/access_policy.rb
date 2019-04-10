@@ -39,6 +39,7 @@ class AccessPolicy
       can [:read, :create, :update], Model
       can [:read, :create, :update], Disrepare
       can [:read, :create, :update], Operation
+      can [:read, :create, :update], Device
       can :manage, Customer
 
     end

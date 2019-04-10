@@ -8,33 +8,48 @@
 
         <div class="well-bg">
           <div class="well-inner">
-<%= form_with model: [@customer, @ticket], local: true do |form| %>
+            <%= render partial: '/shared/form_errors', :locals => { obj: @ticket } %>
+            <%= form_with model: @ticket, local: true do |f| %>
+<%#= form_with model: [@customer, @ticket], local: true do |form| %>
 
-            <div style="padding-top: 10px;">
-              <%= form.text_field :category_id , class: 'input-block-level', placeholder: "category" %>
-            </div>
+              <div>
+                <td><%= link_to customers_path, :class=>'btn btn-primary btn-sm' do %>
+                   <i class="fa fa-undo"></i>
+                   <% end %></td>
+              </div>
+              <div class="form-group">
+                Device: <%= f.select :device_id,  @device_arr, {}, { class: "selectize form-control", id: "device_ids" } %>
+              </div>
 
-            <div style="padding-top: 10px;">
+              <div class="form-group">
+              <%= f.label :orient_price %><br />
+              <%= f.text_field :orient_price, class: "form-control" %>
+              </div>
 
-              <%= form.label :orient_price %>
-              <%= form.text_field :orient_price , class: 'input-block-level', placeholder: "category" %>
-            </div>
+              <div class="form-group">
+              <%= f.label :prepayment %><br />
+              <%= f.text_field :prepayment, class: "form-control" %>
+              </div>
 
-            <div style="padding-top: 10px;">
+              <div class="form-group">
+              Collaborator: <%= f.select :collaborator_id, options_for_select(@collab_arr,
+                   current_user&.collaborator&.id ) %>
+              </div>
 
-              <%= form.label :prepayment %>
-              <%= form.text_field :prepayment , class: 'input-block-level', placeholder: "category" %>
-            </div>
+              <div class="form-group">
+              <%= f.label :orient_date %><br />
+              <%= f.date_field :orient_date, class: "form-control", value: Date.today + 3.days %>
+              </div>
 
-            <%  form.fields_for :parts do |f| %>
-                <%= render partial: 'parts_fields', locals: {f: f} %>
+              <%= f.hidden_field :customer_id %><br />
 
-              <%#= render 'parts_fields', f: f %>
-              <%#= link_to_add_fields 'Add parts', f, :parts %>
-              <% end %>
+              <div class="actions"><%= f.submit  :class=>'btn btn-default float-right' %></div>
+              </div>
+
+            nk_to_add_fields 'Add parts', f, :parts %>
               <div class="container-fluid">
                  <div class="actions">
-                      <%= form.submit  class: 'btn btn btn-default' %>
+                      <%#= form.submit  class: 'btn btn btn-default' %>
                 </div>
               </div>
 

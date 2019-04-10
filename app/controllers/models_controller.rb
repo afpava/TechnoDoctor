@@ -35,8 +35,12 @@ class ModelsController < ApplicationController
 
   def destroy
     authorize! :destroy, @model
-    @model.destroy
-    redirect_back(fallback_location: categories_path(@brand), notice: 'Model was successfully destroyed.')
+    begin
+      @model.destroy
+      redirect_back(fallback_location: categories_path(@brand), notice: 'Model was successfully destroyed.')
+    rescue
+      redirect_back(fallback_location: categories_path(@brand), alert: 'Model linked.')
+    end
   end
 
 

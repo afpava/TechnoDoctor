@@ -1,0 +1,24 @@
+<%= form_with model: [ticket, parts ], local: true do |f| %>
+  <%= render partial: '/shared/form_errors', :locals => { obj: parts } %>
+    <div class="form-group">
+      <%= f.label :description %>
+      <%= f.text_field :description, class: "selectize form-control", required: true %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :price %>
+      <%= f.text_field :price, class: "selectize form-control", required: true%>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :quantity %>
+      <%= f.text_field :quantity, class: "selectize form-control", required: true %>
+    </div>
+
+    <div class="form-group">
+    <%= f.hidden_field :ticket_id %>
+    </div>
+    <div class="form-group">
+        <tr class="actions"><%= f.submit class:'btn btn-default float-right' %></tr>
+    </div>
+<% end %>

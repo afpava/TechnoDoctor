@@ -1,10 +1,18 @@
 <%= render partial: 'pages/header', :locals => { text: "Editing Ticket" } %>
 <div class="container">
+  <div class="container">
+    <div class="col-sm-9">
+      <div class="well-bg">
+        <div class="card-heading">
+        <%#= form.label :name %>
   <%= render partial: 'form', ticket: @ticket %>
 
 
       <tr class="container-fluid pull-right">
 
-              <td><%= link_to 'Back', tickets_path(@ticket), class: 'btn btn-default', data: { confirm: 'Are you sure?' } %></td>
       </tr>
+    </div>
+  </div>
+</div>
+</div>
 </div>

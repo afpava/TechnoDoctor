@@ -1,0 +1,24 @@
+<%= render partial: '/pages/header', :locals => { text: "New Part" } %>
+<div class="main-content">
+  <!-- main container -->
+  <div class="container content">
+    <div class="row">
+      <div class="col-md-6 pricing-block col-sm-12 col-md-offset-3">
+        <!-- pricing block -->
+
+        <td><%= link_to ticket_path(@part), :class=>'btn btn-primary btn-sm' do %>
+          <i class="fa fa-undo"></i>
+          <% end %>
+        </td>
+        <div class="well-bg">
+          <div class="well-inner">
+            <%= render partial: 'parts/form', :locals => { obj: @part } %>
+
+
+        </div>
+      </div>
+      <!-- /.pricing block -->
+    </div>
+  </div>
+</div>
+</div>

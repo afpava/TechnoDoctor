@@ -117,3 +117,7 @@ parts_list = [
 parts_list.each do |desc, price, quan |
   Part.create!( description: desc, price: price, quantity: quan, ticket_id: 1 )
 end
+
+10.times do
+	Feedback.create!(user_id: rand(1..21), title: Faker::Lorem.sentence(3), text: Faker::Lorem.sentence(3, true, 35), status: "published" )
+end
