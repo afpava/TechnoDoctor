@@ -1,17 +1,18 @@
 class FeedbacksController < ApplicationController
-
     before_action :set_feedback, only: [ :destroy, :edit, :update]
+    skip_before_action :require_login, only: :show
+
     def index
       @feedbacks = current_user.feedbacks
     end
 
     def new
-      @feedback = current_user.feedbacks.build
+      @feedback = current_user&.feedbacks&.build
+      authorize! :create, @feedback
     end
 
     def show
       @feedback = Feedback.find(params[:id])
-      authorize! :read, @feedback
     end
 
 

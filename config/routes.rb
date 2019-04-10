@@ -29,7 +29,7 @@ Rails.application.routes.draw do
       get '/pages/:page' => 'pages#show'
 
   resources :sessions , only: [:create, :show, :index, :destroy]
-  resources :feedbacks, only:  [:new, :create, :edit, :show, :index, :update, :destroy]
+  resources :feedbacks, only:  [:show, :new, :create, :edit, :index, :update, :destroy]
   resources :devices
   resources :contacts, only: [:new, :create]
 

@@ -28,7 +28,9 @@
                 <a href="/pages/pricing" title="Feature">Feature</a>
                 <ul>
                   <%= active_page("Pricing", "/pages/pricing") %>
+                  <% if can? :create, Feedback %>
                     <%= active_page("Feedback", "/feedbacks/new") %>
+                  <% end %>
                 </li>
 
               </ul>
